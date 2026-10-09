@@ -1,0 +1,35 @@
+{
+  "formatVersion": "1",
+  "unit": 5,
+  "theme": "Richtung und Ort",
+  "communicationGoals": [
+    "Orte, Wege und Himmelsrichtungen erkennen",
+    "belegte Präpositionen in festen Chunks verstehen",
+    "die kuratierte Aufforderung Lasto beth verstehen und bilden"
+  ],
+  "grammarComponents": ["direct-object"],
+  "referenceGrammarComponents": ["prepositions", "indirect-object"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:2583985695", "lemma": "mi", "gloss": "in", "mode": "fixed-chunk" },
+    { "lexemeId": "eldamo:3149142565", "lemma": "na¹", "gloss": "to, towards", "mode": "fixed-chunk" },
+    { "lexemeId": "eldamo:2407603967", "lemma": "o", "gloss": "from, of", "mode": "recognition" },
+    { "lexemeId": "eldamo:3815044181", "lemma": "nu", "gloss": "under", "mode": "recognition" },
+    { "lexemeId": "eldamo:1223027571", "lemma": "thar", "gloss": "across, over", "mode": "recognition" },
+    { "lexemeId": "eldamo:667014213", "lemma": "an", "gloss": "to, for", "mode": "recognition" },
+    { "lexemeId": "eldamo:3570217533", "lemma": "râd", "gloss": "way, path, pass", "mode": "productive" },
+    { "lexemeId": "eldamo:2353825653", "lemma": "iant", "gloss": "bridge", "mode": "productive" },
+    { "lexemeId": "eldamo:1696525921", "lemma": "duin", "gloss": "great river", "mode": "productive" },
+    { "lexemeId": "eldamo:2107077031", "lemma": "amon", "gloss": "hill, steep mountain", "mode": "productive" },
+    { "lexemeId": "eldamo:348549421", "lemma": "forod", "gloss": "north", "mode": "recognition" },
+    { "lexemeId": "eldamo:614934925", "lemma": "harad", "gloss": "south", "mode": "recognition" },
+    { "lexemeId": "eldamo:1864027637", "lemma": "annûn", "gloss": "west", "mode": "recognition" },
+    { "lexemeId": "eldamo:2972186711", "lemma": "rhûn", "gloss": "east", "mode": "recognition" },
+    { "lexemeId": "eldamo:800667727", "lemma": "men-", "gloss": "go", "mode": "recognition" },
+    { "lexemeId": "eldamo:1272131327", "lemma": "anna-", "gloss": "give", "mode": "recognition" },
+    { "lexemeId": "eldamo:3923493535", "lemma": "lasta-", "gloss": "listen", "mode": "productive-imperative" },
+    { "lexemeId": "eldamo:184000497", "lemma": "peth", "gloss": "word", "mode": "productive-direct-object" }
+  ],
+  "fixedForms": [
+    { "surface": "Lasto beth.", "translation": "Höre auf das Wort.", "status": "attested", "sourceRefIds": ["Eldamo:word-4103883957", "Eldamo:word-184000497"] }
+  ]
+}

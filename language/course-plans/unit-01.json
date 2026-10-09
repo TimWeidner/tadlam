@@ -1,0 +1,47 @@
+{
+  "formatVersion": "1",
+  "unit": 1,
+  "theme": "Am Lager ankommen",
+  "communicationGoals": [
+    "jemanden begrüßen und danken",
+    "das Lager und unmittelbare Orte benennen",
+    "einfache Aufforderungen am Tor verstehen"
+  ],
+  "grammarComponents": ["formulae", "imperative", "basic-word-order"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:3420722951", "lemma": "mae", "gloss": "well; excellent, admirable", "mode": "productive" },
+    { "lexemeId": "eldamo:2372353107", "lemma": "suilad", "gloss": "greeting", "mode": "recognition" },
+    { "lexemeId": "eldamo:2964964287", "lemma": "mellon", "gloss": "friend", "mode": "productive" },
+    { "lexemeId": "eldamo:2544797639", "lemma": "echad", "gloss": "camp", "mode": "productive" },
+    { "lexemeId": "eldamo:3001223523", "lemma": "naur", "gloss": "fire", "mode": "productive" },
+    { "lexemeId": "eldamo:3606114301", "lemma": "annon", "gloss": "great gate, door", "mode": "productive" },
+    { "lexemeId": "eldamo:809570117", "lemma": "taur", "gloss": "forest", "mode": "productive" },
+    { "lexemeId": "eldamo:599418975", "lemma": "ped-", "gloss": "to say, speak", "mode": "productive-imperative" },
+    { "lexemeId": "eldamo:2086508063", "lemma": "minna-", "gloss": "to enter, go in", "mode": "productive-imperative" },
+    { "lexemeId": "eldamo:2756894593", "lemma": "tol-", "gloss": "to come", "mode": "recognition" },
+    { "lexemeId": "eldamo:1590244863", "lemma": "cen-", "gloss": "to see, perceive, look", "mode": "recognition" },
+    { "lexemeId": "eldamo:235290361", "lemma": "elia-", "gloss": "to cause to prosper, bless a work, help one", "mode": "recognition" },
+    { "lexemeId": "eldamo:209902113", "lemma": "edra-", "gloss": "to open out", "mode": "recognition" }
+  ],
+  "fixedPhrases": [
+    {
+      "lexemeId": "eldamo:2338511755",
+      "surface": "Mae govannen",
+      "translation": "Sei gegrüßt!",
+      "status": "attested"
+    },
+    {
+      "lexemeId": "tadlam:hannon-le",
+      "surface": "Hannon le",
+      "translation": "Danke dir.",
+      "status": "neo",
+      "note": "Feste, klar als Neo markierte Formel; keine Produktivregel."
+    },
+    {
+      "lexemeId": "eldamo:3670583905",
+      "surface": "Pedo mellon a minno.",
+      "translation": "Sage „Freund“ und tritt ein.",
+      "status": "attested"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<word-data version="test-1">
+  <word l="s" v="mellon" speech="n" gloss="friend; companion" page-id="100">
+    <ref source="LotR/Moria" />
+  </word>
+  <word l="ns" v="Hannon le" speech="vb" gloss="thank you" page-id="101" mark="!" created="Example Author" neo-version="0.8" />
+  <word l="ns" v="abor²" speech="adj" gloss="following" page-id="102" mark="^" />
+  <word l="s" v="old-form" speech="n" gloss="old word" page-id="103" mark="†" />
+  <word l="q" v="Elda" speech="n" gloss="Elf" page-id="104" />
+</word-data>

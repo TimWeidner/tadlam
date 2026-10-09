@@ -1,0 +1,22 @@
+{
+  "formatVersion": "1",
+  "entries": [
+    { "lexemeId": "eldamo:3420722951", "uses": [{ "unit": 1, "lessonId": "arrival", "role": "introduced", "surface": "mae" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "mae" }] },
+    { "lexemeId": "eldamo:2372353107", "uses": [{ "unit": 1, "lessonId": "arrival", "role": "introduced", "surface": "suilad" }] },
+    { "lexemeId": "eldamo:2964964287", "uses": [{ "unit": 1, "lessonId": "arrival", "role": "introduced", "surface": "mellon" }, { "unit": 1, "lessonId": "gate", "role": "practised", "surface": "mellon" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "mellon" }] },
+    { "lexemeId": "eldamo:2338511755", "uses": [{ "unit": 1, "lessonId": "arrival", "role": "introduced", "surface": "Mae govannen" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "Mae govannen" }] },
+    { "lexemeId": "tadlam:hannon-le", "uses": [{ "unit": 1, "lessonId": "arrival", "role": "introduced", "surface": "Hannon le" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "Hannon le" }] },
+    { "lexemeId": "eldamo:2544797639", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "echad" }] },
+    { "lexemeId": "eldamo:3001223523", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "naur" }] },
+    { "lexemeId": "eldamo:3606114301", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "annon" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "annon" }] },
+    { "lexemeId": "eldamo:809570117", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "taur" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "taur" }] },
+    { "lexemeId": "eldamo:1590244863", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "cen-" }] },
+    { "lexemeId": "eldamo:2756894593", "uses": [{ "unit": 1, "lessonId": "camp", "role": "introduced", "surface": "tol-" }] },
+    { "lexemeId": "eldamo:599418975", "uses": [{ "unit": 1, "lessonId": "gate", "role": "introduced", "surface": "pedo" }] },
+    { "lexemeId": "eldamo:2086508063", "uses": [{ "unit": 1, "lessonId": "gate", "role": "introduced", "surface": "minno" }] },
+    { "lexemeId": "eldamo:3670583905", "uses": [{ "unit": 1, "lessonId": "gate", "role": "introduced", "surface": "Pedo mellon a minno" }, { "unit": 1, "lessonId": "ramp", "role": "reviewed", "surface": "Pedo mellon a minno" }] },
+    { "lexemeId": "eldamo:235290361", "uses": [{ "unit": 1, "lessonId": "ramp", "role": "introduced", "surface": "elia-" }] },
+    { "lexemeId": "eldamo:209902113", "uses": [{ "unit": 1, "lessonId": "ramp", "role": "introduced", "surface": "edra-" }] }
+  ],
+  "gaps": []
+}

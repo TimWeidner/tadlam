@@ -1,0 +1,55 @@
+import { describe, expect, it } from "vitest";
+import { lessons } from "../domain";
+import {
+  LESSON_EXERCISE_TARGET,
+  lessonExerciseSet,
+} from "./lesson-exercises";
+
+describe("lesson exercise set", () => {
+  it("gives every playable lesson exactly fifteen exercises", () => {
+    expect(lessons.map((lesson) => lessonExerciseSet(lesson).length)).toEqual(
+      lessons.map(() => LESSON_EXERCISE_TARGET),
+    );
+  });
+
+  it("publishes five contiguous, playable course units", () => {
+    expect([...new Set(lessons.map((lesson) => lesson.unit))]).toEqual([
+      1, 2, 3, 4, 5,
+    ]);
+    expect(lessons.filter((lesson) => lesson.unit === 1)).toHaveLength(4);
+    for (const unit of [2, 3, 4, 5]) {
+      const unitLessons = lessons.filter((lesson) => lesson.unit === unit);
+      expect(unitLessons).toHaveLength(5);
+      expect(unitLessons[2].phase).toBe("review");
+    }
+  });
+
+  it("uses a fully authored pool with unique question ids", () => {
+    const exercises = lessonExerciseSet(lessons[0]);
+    expect(exercises.slice(0, 4).map((exercise) => exercise.id)).toEqual([
+      "u1a1",
+      "u1a2",
+      "u1a3",
+      "u1a4",
+    ]);
+    expect(new Set(exercises.map((exercise) => exercise.id)).size).toBe(
+      LESSON_EXERCISE_TARGET,
+    );
+  });
+
+  it("keeps every Unit-1 round varied instead of mechanically recycling a prompt", () => {
+    for (const lesson of lessons) {
+      const exercises = lessonExerciseSet(lesson);
+      expect(new Set(exercises.map((exercise) => exercise.prompt)).size).toBe(
+        LESSON_EXERCISE_TARGET,
+      );
+      expect(new Set(exercises.map((exercise) => exercise.kind)).size).toBeGreaterThanOrEqual(3);
+    }
+  });
+
+  it("rejects an incomplete authored pool instead of cloning questions", () => {
+    expect(() => lessonExerciseSet({ ...lessons[0], exercises: [] })).toThrow(
+      "erwartet werden 15",
+    );
+  });
+});

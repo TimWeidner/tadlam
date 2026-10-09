@@ -1,0 +1,30 @@
+{
+  "formatVersion": "1",
+  "unit": 2,
+  "theme": "Menschen & Ausrüstung",
+  "communicationGoals": [
+    "Personen, Rollen und Ausrüstung benennen",
+    "Eigenschaftswörter erkennen und ihre spätere Satzstellung einordnen",
+    "den unmittelbaren Lageralltag beschreiben"
+  ],
+  "grammarComponents": [],
+  "referenceGrammarComponents": ["noun-phrases", "adjectives", "adverbs"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:753238821", "lemma": "Adan", "gloss": "Man as a species", "mode": "recognition" },
+    { "lexemeId": "eldamo:3444049341", "lemma": "hîr", "gloss": "lord, master", "mode": "productive" },
+    { "lexemeId": "eldamo:2862812157", "lemma": "hiril", "gloss": "lady", "mode": "productive" },
+    { "lexemeId": "eldamo:492190783", "lemma": "sadron", "gloss": "trusty follower, loyal companion", "mode": "recognition" },
+    { "lexemeId": "eldamo:1681096947", "lemma": "tir-", "gloss": "to look towards, watch over, guard", "mode": "recognition" },
+    { "lexemeId": "eldamo:677121227", "lemma": "coll¹", "gloss": "cloak, mantle", "mode": "productive" },
+    { "lexemeId": "eldamo:3519182345", "lemma": "megil", "gloss": "sword, longsword", "mode": "productive" },
+    { "lexemeId": "eldamo:224267161", "lemma": "thand", "gloss": "shield", "mode": "productive" },
+    { "lexemeId": "eldamo:2183766783", "lemma": "cû", "gloss": "bow", "mode": "recognition" },
+    { "lexemeId": "eldamo:3875004085", "lemma": "roch", "gloss": "horse", "mode": "productive" },
+    { "lexemeId": "eldamo:2242483507", "lemma": "mâb", "gloss": "hand", "mode": "recognition" },
+    { "lexemeId": "eldamo:3687268913", "lemma": "nen", "gloss": "water, lake, pool, lesser river", "mode": "productive" },
+    { "lexemeId": "eldamo:1283740149", "lemma": "bas(t)", "gloss": "bread", "mode": "productive" },
+    { "lexemeId": "eldamo:2594874609", "lemma": "calen", "gloss": "green, fresh, vigorous", "mode": "productive" },
+    { "lexemeId": "eldamo:3202359171", "lemma": "beleg", "gloss": "great, mighty, large, big", "mode": "productive" }
+  ],
+  "fixedPhrases": []
+}

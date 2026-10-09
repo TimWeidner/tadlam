@@ -1,0 +1,11 @@
+{
+  "id": "eldamo",
+  "name": "Eldamo – Elvish Lexicon",
+  "dataUrl": "https://www.eldamo.org/content/data-model/eldamo-data.xml",
+  "license": "CC-BY-4.0",
+  "attribution": "Eldamo – Elvish Lexicon by Paul Strack, used under CC BY 4.0.",
+  "languages": {
+    "s": "Sindarin",
+    "ns": "Neo-Sindarin"
+  }
+}

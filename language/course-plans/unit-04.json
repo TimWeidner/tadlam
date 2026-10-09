@@ -1,0 +1,42 @@
+{
+  "formatVersion": "1",
+  "unit": 4,
+  "theme": "Vor dem Tor",
+  "communicationGoals": [
+    "Einzelnes und mehrere in einer festen, belegten Formenliste unterscheiden",
+    "häufige Vokalwechsel als Paar erkennen",
+    "Klassenplurale von normalen Pluralen unterscheiden"
+  ],
+  "grammarComponents": ["singular-plural", "i-affection"],
+  "referenceGrammarComponents": ["class-plural"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:658710813", "lemma": "aran", "gloss": "king", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:2375289541", "lemma": "barad", "gloss": "tower", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:2107077031", "lemma": "amon", "gloss": "hill", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:311394245", "lemma": "Edhel", "gloss": "Elf", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:86383055", "lemma": "orch", "gloss": "orc", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:1009966641", "lemma": "naug", "gloss": "dwarf", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:3005081253", "lemma": "galadh", "gloss": "tree", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:1512724021", "lemma": "hên", "gloss": "child", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:1452341695", "lemma": "narn", "gloss": "tale", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:1667426933", "lemma": "rath", "gloss": "path, road", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:285722173", "lemma": "certh", "gloss": "rune", "mode": "productive-pair" },
+    { "lexemeId": "eldamo:2760610079", "lemma": "tâl", "gloss": "foot", "mode": "productive-pair" }
+  ],
+  "formPairs": [
+    { "singular": "annon", "plural": "ennyn", "translation": "Tor/Tore", "sourceRefIds": ["Eldamo:word-3606114301"] },
+    { "singular": "Adan", "plural": "Edain", "translation": "Mensch/Menschen", "sourceRefIds": ["Eldamo:word-753238821"] },
+    { "singular": "aran", "plural": "erain", "translation": "König/Könige", "sourceRefIds": ["Eldamo:word-658710813"] },
+    { "singular": "barad", "plural": "beraid", "translation": "Turm/Türme", "sourceRefIds": ["Eldamo:word-2375289541"] },
+    { "singular": "amon", "plural": "emyn", "translation": "Hügel/Hügel", "sourceRefIds": ["Eldamo:word-2107077031"] },
+    { "singular": "Edhel", "plural": "Edhil", "translation": "Elf/Elben", "sourceRefIds": ["Eldamo:word-311394245"] },
+    { "singular": "orch", "plural": "yrch", "translation": "Ork/Orks", "sourceRefIds": ["Eldamo:word-86383055"] },
+    { "singular": "naug", "plural": "noeg", "translation": "Zwerg/Zwerge", "sourceRefIds": ["Eldamo:word-1009966641"] },
+    { "singular": "galadh", "plural": "gelaidh", "translation": "Baum/Bäume", "sourceRefIds": ["Eldamo:word-3005081253"] },
+    { "singular": "hên", "plural": "hîn", "translation": "Kind/Kinder", "sourceRefIds": ["Eldamo:word-1512724021"] },
+    { "singular": "narn", "plural": "nern", "translation": "Erzählung/Erzählungen", "sourceRefIds": ["Eldamo:word-1452341695"] },
+    { "singular": "rath", "plural": "raith", "translation": "Pfad/Pfade", "sourceRefIds": ["Eldamo:word-1667426933"] },
+    { "singular": "certh", "plural": "cirth", "translation": "Rune/Runen", "sourceRefIds": ["Eldamo:word-285722173"] },
+    { "singular": "tâl", "plural": "tail", "translation": "Fuß/Füße", "sourceRefIds": ["Eldamo:word-2760610079"] }
+  ]
+}

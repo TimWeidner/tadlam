@@ -1,0 +1,127 @@
+{
+  "formatVersion": "1",
+  "courseUnits": 12,
+  "policy": {
+    "productive": "Nur kuratierte, getestete Formen dürfen Aufgaben generieren oder Antworten automatisch bewerten.",
+    "reference": "Erklärte Regeln ohne ausreichende Formen für freie Generierung.",
+    "deferred": "Historisch widersprüchlich, unvollständig belegt oder noch nicht redaktionell entschieden."
+  },
+  "units": [
+    {
+      "unit": 1,
+      "theme": "Am Lager ankommen",
+      "components": ["formulae", "imperative", "basic-word-order"],
+      "outcome": "Begrüßen, danken und einfache Aufforderungen verstehen."
+    },
+    {
+      "unit": 2,
+      "theme": "Unterwegs",
+      "components": ["noun-phrases", "adjectives", "adverbs"],
+      "outcome": "Dinge, Personen und Orte kurz beschreiben."
+    },
+    {
+      "unit": 3,
+      "theme": "Im Wald",
+      "components": ["definite-article", "soft-mutation", "adjective-position"],
+      "outcome": "Bestimmte Dinge und Eigenschaften im Kontext benennen."
+    },
+    {
+      "unit": 4,
+      "theme": "Vor dem Tor",
+      "components": ["singular-plural", "i-affection", "class-plural"],
+      "outcome": "Einzelnes, mehrere und Gruppen unterscheiden."
+    },
+    {
+      "unit": 5,
+      "theme": "Richtung und Ort",
+      "components": ["prepositions", "direct-object", "indirect-object"],
+      "outcome": "Einfachen Weg, Ziel und Handlung ausdrücken."
+    },
+    {
+      "unit": 6,
+      "theme": "Wem gehört was?",
+      "components": ["possessives", "genitive", "noun-modifiers"],
+      "outcome": "Belegte Besitz- und Zugehörigkeitsmuster verstehen."
+    },
+    {
+      "unit": 7,
+      "theme": "Was geschieht?",
+      "components": ["verb-classes", "selected-attested-verb-forms", "irregular-verbs"],
+      "outcome": "Häufige Handlungen mit einzeln belegten Formen anwenden."
+    },
+    {
+      "unit": 8,
+      "theme": "Sätze verbinden",
+      "components": ["conjunctions", "word-formation", "attested-sentence-patterns"],
+      "outcome": "Kuratierte Sätze und kurze Dialoge sicher verbinden."
+    },
+    {
+      "unit": 9,
+      "theme": "Neo-Brücke: Mit anderen sprechen",
+      "components": ["polite-address", "independent-pronouns", "object-dative-pronouns"],
+      "outcome": "Kuratiertes Neo-Sindarin für Anrede, Bitte und Dank einsetzen."
+    },
+    {
+      "unit": 10,
+      "theme": "Neo-Brücke: Zeit und Person",
+      "components": ["present-tense", "past-tense", "subject-suffixes", "vowel-lengthening"],
+      "outcome": "Erweiterte, als Neo gekennzeichnete Verbmuster verstehen."
+    },
+    {
+      "unit": 11,
+      "theme": "Neo-Brücke: Zustand und Frage",
+      "components": ["copula", "predicative-adjectives", "interrogatives", "negation"],
+      "outcome": "Zustände, Fragen und Verneinungen mit klarer Neo-Kennzeichnung bilden."
+    },
+    {
+      "unit": 12,
+      "theme": "Freies Spiel",
+      "components": ["nasal-mutation", "unusual-plurals", "numbers", "comparative-superlative", "relative-clauses", "participles", "advanced-mutations"],
+      "outcome": "Längere, aber weiterhin kuratierte LARP-Dialoge verstehen und bauen."
+    }
+  ],
+  "components": [
+    { "id": "formulae", "scope": "productive", "source": "curated" },
+    { "id": "imperative", "scope": "productive", "source": "attested" },
+    { "id": "basic-word-order", "scope": "productive", "source": "attested" },
+    { "id": "noun-phrases", "scope": "productive", "source": "attested" },
+    { "id": "adjectives", "scope": "productive", "source": "attested" },
+    { "id": "adverbs", "scope": "reference", "source": "mixed" },
+    { "id": "definite-article", "scope": "productive", "source": "attested-late-variant" },
+    { "id": "soft-mutation", "scope": "productive", "source": "attested" },
+    { "id": "adjective-position", "scope": "productive", "source": "attested" },
+    { "id": "singular-plural", "scope": "productive", "source": "attested" },
+    { "id": "i-affection", "scope": "productive", "source": "attested" },
+    { "id": "class-plural", "scope": "reference", "source": "attested" },
+    { "id": "prepositions", "scope": "productive", "source": "attested-per-item" },
+    { "id": "direct-object", "scope": "productive", "source": "attested" },
+    { "id": "indirect-object", "scope": "productive", "source": "attested-per-item" },
+    { "id": "polite-address", "scope": "reference", "source": "mixed" },
+    { "id": "independent-pronouns", "scope": "deferred", "source": "incomplete" },
+    { "id": "object-dative-pronouns", "scope": "deferred", "source": "incomplete" },
+    { "id": "possessives", "scope": "reference", "source": "mixed" },
+    { "id": "genitive", "scope": "reference", "source": "mixed" },
+    { "id": "noun-modifiers", "scope": "productive", "source": "attested" },
+    { "id": "verb-classes", "scope": "reference", "source": "mixed" },
+    { "id": "selected-attested-verb-forms", "scope": "productive", "source": "per-lexeme" },
+    { "id": "present-tense", "scope": "reference", "source": "mixed" },
+    { "id": "subject-suffixes", "scope": "deferred", "source": "incomplete" },
+    { "id": "past-tense", "scope": "reference", "source": "mixed" },
+    { "id": "vowel-lengthening", "scope": "reference", "source": "attested" },
+    { "id": "irregular-verbs", "scope": "productive", "source": "per-lexeme" },
+    { "id": "copula", "scope": "reference", "source": "mixed" },
+    { "id": "predicative-adjectives", "scope": "reference", "source": "mixed" },
+    { "id": "interrogatives", "scope": "deferred", "source": "incomplete" },
+    { "id": "negation", "scope": "deferred", "source": "needs-curation" },
+    { "id": "nasal-mutation", "scope": "reference", "source": "attested" },
+    { "id": "unusual-plurals", "scope": "deferred", "source": "variable" },
+    { "id": "numbers", "scope": "reference", "source": "mixed" },
+    { "id": "comparative-superlative", "scope": "deferred", "source": "neo" },
+    { "id": "conjunctions", "scope": "productive", "source": "attested-per-item" },
+    { "id": "attested-sentence-patterns", "scope": "productive", "source": "per-pattern" },
+    { "id": "relative-clauses", "scope": "deferred", "source": "needs-curation" },
+    { "id": "participles", "scope": "reference", "source": "mixed" },
+    { "id": "word-formation", "scope": "reference", "source": "mixed" },
+    { "id": "advanced-mutations", "scope": "deferred", "source": "variable" }
+  ]
+}

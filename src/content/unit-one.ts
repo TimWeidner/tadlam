@@ -1,0 +1,161 @@
+import type { Exercise, Lesson } from "../domain";
+
+const source = "Eldamo · kuratierter Unit-1-Wortschatz";
+const moria = "LotR · Moria-Inschrift";
+const neo = "Neo-Sindarin · Kurskonvention";
+
+const choice = (
+  id: string,
+  prompt: string,
+  choices: string[],
+  answer: string,
+  hint: string,
+  status: Exercise["status"] = "attested",
+  exerciseSource = source,
+): Exercise => ({ id, kind: "choice", prompt, choices, answer, hint, status, source: exerciseSource });
+
+const type = (
+  id: string,
+  prompt: string,
+  answer: string,
+  hint: string,
+  status: Exercise["status"] = "attested",
+  exerciseSource = source,
+): Exercise => ({ id, kind: "type", prompt, answer, hint, status, source: exerciseSource });
+
+const cloze = (
+  id: string,
+  prompt: string,
+  choices: string[],
+  answer: string,
+  hint: string,
+  status: Exercise["status"] = "attested",
+  exerciseSource = source,
+): Exercise => ({ id, kind: "cloze", prompt, choices, answer, hint, status, source: exerciseSource });
+
+const order = (
+  id: string,
+  prompt: string,
+  tokens: string[],
+  answer: string,
+  hint: string,
+  status: Exercise["status"] = "attested",
+  exerciseSource = source,
+): Exercise => ({ id, kind: "order", prompt, tokens, answer, hint, status, source: exerciseSource });
+
+const match = (
+  id: string,
+  prompt: string,
+  pairs: Array<{ left: string; right: string }>,
+  hint: string,
+  status: Exercise["status"] = "attested",
+  exerciseSource = source,
+): Exercise => ({ id, kind: "match", prompt, pairs, answer: "match", hint, status, source: exerciseSource });
+
+/** Four curated 15-question lessons. No session is padded with cloned tasks. */
+export const unitOneLessons: Lesson[] = [
+  {
+    id: "arrival",
+    unit: 1,
+    title: "Begrüßung am Feuer",
+    subtitle: "Neue Wörter · Ankommen",
+    icon: "✦",
+    phase: "new",
+    lexemeIds: ["eldamo:3420722951", "eldamo:2372353107", "eldamo:2964964287", "eldamo:2338511755", "tadlam:hannon-le"],
+    exercises: [
+      choice("u1a1", "Was bedeutet „Mae govannen“?", ["Sei gegrüßt!", "Tritt ein!", "Wo ist das Tor?"], "Sei gegrüßt!", "Eine feste, belegte Begrüßungsformel.", "attested", moria),
+      choice("u1a2", "Was bedeutet „mellon“?", ["Freund", "Wald", "Feuer"], "Freund", "Das Wort erscheint an einem berühmten Tor."),
+      choice("u1a3", "Welche Grundbedeutung hat „mae“?", ["gut, wohl", "groß", "sprechen"], "gut, wohl", "Es steckt in der Begrüßungsformel."),
+      match("u1a4", "Ordne die ersten Wörter zu.", [{ left: "mae", right: "gut, wohl" }, { left: "mellon", right: "Freund" }, { left: "suilad", right: "Gruß" }], "Suilad ist hier ein Wort für einen Gruß, keine freie Begrüßungsregel."),
+      cloze("u1a5", "Ergänze die feste Formel: Mae ___.", ["govannen", "mellon", "minno"], "govannen", "Die beiden Wörter bleiben in Unit 1 eine feste Formel.", "attested", moria),
+      type("u1a6", "Tippe das Wort für „Freund“.", "mellon", "MEL-lon."),
+      choice("u1a7", "Welche Formel ist in Tadlam als Neo-Sindarin markiert?", ["Hannon le", "Mae govannen", "mellon"], "Hannon le", "Die Kennzeichnung zeigt: spielbar, aber nicht als Tolkien-Beleg gelernt.", "neo", neo),
+      choice("u1a8", "Was drückt „Hannon le“ aus?", ["Danke dir", "Sei gegrüßt", "Sprich!"], "Danke dir", "Eine feste Neo-Sindarin-Dankformel.", "neo", neo),
+      order("u1a9", "Ordne die belegte Begrüßung.", ["govannen", "Mae"], "Mae govannen", "Beginne mit Mae.", "attested", moria),
+      choice("u1a10", "Welches Wort bezeichnet einen Gruß?", ["suilad", "mellon", "mae"], "suilad", "In dieser Unit wird es nur erkannt, nicht frei eingesetzt."),
+      cloze("u1a11", "Welche Formel passt zur deutschen Begrüßung? ___", ["Mae govannen", "Hannon le", "Pedo"], "Mae govannen", "Die Formel wird als Ganzes gelernt.", "attested", moria),
+      type("u1a12", "Tippe die belegte Formel für „Sei gegrüßt!“.", "Mae govannen", "MAI go-VAN-nen.", "attested", moria),
+      choice("u1a13", "Du triffst eine befreundete Person am Feuer. Was passt als Begrüßung?", ["Mae govannen", "Hannon le", "minno"], "Mae govannen", "Die Szene verlangt eine Begrüßung, keinen Dank."),
+      match("u1a14", "Ordne die festen Ausdrücke ihren Situationen zu.", [{ left: "Mae govannen", right: "jemanden begrüßen" }, { left: "Hannon le", right: "für Hilfe danken" }], "Beide Ausdrücke werden als feste Einheiten verwendet.", "neo", neo),
+      choice("u1a15", "Welches Wort aus dieser Lektion bedeutet „Freund“?", ["mellon", "suilad", "mae"], "mellon", "Dein erster freier Wortabruf."),
+    ],
+  },
+  {
+    id: "camp",
+    unit: 1,
+    title: "Was siehst du im Lager?",
+    subtitle: "Neue Wörter · Orte erkennen",
+    icon: "◎",
+    phase: "new",
+    lexemeIds: ["eldamo:2544797639", "eldamo:3001223523", "eldamo:3606114301", "eldamo:809570117", "eldamo:1590244863", "eldamo:2756894593"],
+    exercises: [
+      choice("u1c1", "Was bedeutet „echad“?", ["Lager", "Wald", "Tür"], "Lager", "Echad bezeichnet hier das Lager als Ort."),
+      choice("u1c2", "Was bedeutet „naur“?", ["Feuer", "Wasser", "Freund"], "Feuer", "Ein gutes Wort für das Lagerfeuer."),
+      choice("u1c3", "Was bedeutet „annon“?", ["großes Tor", "Schild", "Gruß"], "großes Tor", "Das Wort ist aus der Moria-Inschrift bekannt."),
+      choice("u1c4", "Was bedeutet „taur“?", ["Wald", "Lager", "Name"], "Wald", "TAUR."),
+      match("u1c5", "Ordne Orte und Dinge zu.", [{ left: "echad", right: "Lager" }, { left: "naur", right: "Feuer" }, { left: "annon", right: "großes Tor" }], "Richtige Paare bleiben liegen."),
+      type("u1c6", "Tippe das Wort für „Wald“.", "taur", "TAUR."),
+      cloze("u1c7", "Das Sindarin-Wort für ein großes Tor ist ___.", ["annon", "naur", "mellon"], "annon", "Es beginnt mit AN-."),
+      choice("u1c8", "Du siehst Flammen am Ankunftsort. Welches Wort passt?", ["naur", "taur", "echad"], "naur", "Die Szene hilft dir beim Erinnern."),
+      type("u1c9", "Tippe das Wort für „Lager“.", "echad", "E-chad."),
+      choice("u1c10", "Welche Grundbedeutung hat der Stamm „cen-“?", ["sehen, wahrnehmen", "kommen", "danken"], "sehen, wahrnehmen", "Der Stamm bleibt in Unit 1 Erkennungswortschatz."),
+      choice("u1c11", "Welche Grundbedeutung hat „tol-“?", ["kommen", "sprechen", "öffnen"], "kommen", "Auch dieses Verb wird hier nur erkannt."),
+      match("u1c12", "Finde die passenden Bilder im Kopf: Wort und Bedeutung.", [{ left: "taur", right: "Wald" }, { left: "mellon", right: "Freund" }, { left: "naur", right: "Feuer" }], "Ein Wort aus der ersten Lektion ist dabei."),
+      cloze("u1c13", "Eine Waldszene verweist auf ___.", ["taur", "annon", "suilad"], "taur", "Kein Satzbau wird hier neu gelernt – nur Wortschatz."),
+      type("u1c14", "Tippe das Wort für „Feuer“.", "naur", "NA-ur."),
+      choice("u1c15", "Welche drei Dinge passen zu einer Ankunftsszene?", ["echad · naur · annon", "mellon · suilad · tol-", "mae · cen- · minno"], "echad · naur · annon", "Lager, Feuer und Tor sind die neuen Szenenwörter."),
+    ],
+  },
+  {
+    id: "gate",
+    unit: 1,
+    title: "Die Wache spricht",
+    subtitle: "Grammatik · feste Imperative",
+    icon: "❋",
+    phase: "grammar",
+    lexemeIds: ["eldamo:599418975", "eldamo:2086508063", "eldamo:3670583905", "eldamo:2964964287"],
+    exercises: [
+      choice("u1g1", "Welche Lesart der Moria-Zeile wird hier geübt?", ["Sage „Freund“ und tritt ein.", "Der Freund bewacht das Tor.", "Der Wald ist groß."], "Sage „Freund“ und tritt ein.", "Die Inschrift ist absichtlich mehrdeutig; Tadlam nutzt hier die Rätsel-Lesart.", "attested", moria),
+      choice("u1g2", "Was bedeutet „pedo“ in dieser festen Zeile?", ["sprich, sage!", "tritt ein!", "komm!"], "sprich, sage!", "Die Form gehört zu ped-.", "attested", moria),
+      choice("u1g3", "Was bedeutet „minno“ in dieser festen Zeile?", ["tritt ein!", "danke!", "sieh!"], "tritt ein!", "Die Form gehört zu minna-.", "attested", moria),
+      match("u1g4", "Ordne Stamm und kuratierte Imperativform zu.", [{ left: "ped-", right: "pedo" }, { left: "minna-", right: "minno" }], "Nur diese beiden Imperativbildungen sind in Unit 1 produktiv freigegeben.", "attested", moria),
+      order("u1g5", "Ordne die Moria-Zeile.", ["mellon", "minno", "Pedo", "a"], "Pedo mellon a minno", "Die kleine Verbindung a steht zwischen mellon und minno.", "attested", moria),
+      cloze("u1g6", "Vervollständige: Pedo mellon a ___.", ["minno", "govannen", "taur"], "minno", "Die letzte Aufforderung bedeutet „tritt ein“.", "attested", moria),
+      choice("u1g7", "Welche Grundform steckt hinter „pedo“?", ["ped-", "minna-", "tol-"], "ped-", "Die Grundform wird im Wörterbuch mit Bindestrich gezeigt."),
+      type("u1g8", "Tippe die kuratierte Form für „Sprich!/Sage!“.", "pedo", "PE-do.", "attested", moria),
+      choice("u1g9", "Welche Grundform steckt hinter „minno“?", ["minna-", "ped-", "cen-"], "minna-", "Die Imperativform endet hier auf -o."),
+      order("u1g10", "Baue die vollständige Tor-Aufforderung erneut.", ["a", "Pedo", "minno", "mellon"], "Pedo mellon a minno", "Zuerst kommt die Aufforderung zu sprechen.", "attested", moria),
+      choice("u1g11", "Welche Bedeutung passt zu der ganzen Zeile?", ["Sage „Freund“ und tritt ein.", "Sei gegrüßt, Freund.", "Komm zum Lagerfeuer."], "Sage „Freund“ und tritt ein.", "Die genaue Rätsel-Lesart bleibt als Hinweis sichtbar.", "attested", moria),
+      type("u1g12", "Tippe die kuratierte Form für „Tritt ein!“.", "minno", "MIN-no.", "attested", moria),
+      cloze("u1g13", "Vervollständige die feste Zeile: ___ mellon a minno.", ["Pedo", "Mae", "Hannon"], "Pedo", "Die erste Form gehört zu ped-.", "attested", moria),
+      match("u1g14", "Ordne Formen und Bedeutung zu.", [{ left: "pedo", right: "sprich, sage!" }, { left: "minno", right: "tritt ein!" }, { left: "mellon", right: "Freund" }], "Die Anrede mellon bleibt in der Zeile unverändert.", "attested", moria),
+      type("u1g15", "Tippe die gesamte Tor-Aufforderung.", "Pedo mellon a minno", "Nutze die feste, kuratierte Reihenfolge.", "attested", moria),
+    ],
+  },
+  {
+    id: "ramp",
+    unit: 1,
+    title: "Tor geöffnet",
+    subtitle: "Anwenden · Abschlussrunde",
+    icon: "◆",
+    phase: "ramp",
+    lexemeIds: ["eldamo:235290361", "eldamo:209902113", "eldamo:3420722951", "eldamo:2964964287", "eldamo:3606114301", "eldamo:809570117", "eldamo:2338511755", "eldamo:3670583905", "tadlam:hannon-le"],
+    exercises: [
+      choice("u1r1", "Welche Grundbedeutung ist für „elia-“ verzeichnet?", ["einem Werk zum Gedeihen verhelfen", "eintreten", "Freund"], "einem Werk zum Gedeihen verhelfen", "Dieses Verb wird nur erkannt, nicht frei flektiert."),
+      choice("u1r2", "Welche Grundbedeutung ist für „edra-“ verzeichnet?", ["sich öffnen", "sehen", "Wald"], "sich öffnen", "Auch dieses Verb bleibt zunächst Erkennungswortschatz."),
+      choice("u1r3", "Eine Person kommt am Lager an. Welche Formel passt zuerst?", ["Mae govannen", "Hannon le", "Pedo mellon a minno"], "Mae govannen", "Zuerst begrüßen, dann folgen die anderen Schritte."),
+      match("u1r4", "Ordne die Kernwörter der Unit zu.", [{ left: "mellon", right: "Freund" }, { left: "annon", right: "großes Tor" }, { left: "taur", right: "Wald" }], "Diese Wörter sind jetzt für den Abruf freigegeben."),
+      cloze("u1r5", "Bei einer Hilfe am Lager passt die Neo-Formel: ___.", ["Hannon le", "Mae govannen", "Pedo mellon a minno"], "Hannon le", "Die Formel ist klar als Neo markiert.", "neo", neo),
+      order("u1r6", "Ordne die Begrüßung.", ["govannen", "Mae"], "Mae govannen", "Eine feste, belegte Einheit.", "attested", moria),
+      type("u1r7", "Tippe das Wort für „großes Tor“.", "annon", "AN-non."),
+      choice("u1r8", "Welche Form ist der Imperativ zu minna-?", ["minno", "minna-", "pedo"], "minno", "Die Form wurde an der Wache geübt."),
+      cloze("u1r9", "Ein Weg durch den Wald führt durch den ___.", ["taur", "mellon", "suilad"], "taur", "Hier wird nur Wortschatz abgefragt, kein neuer Satzbau."),
+      order("u1r10", "Ordne die Tor-Aufforderung.", ["minno", "a", "mellon", "Pedo"], "Pedo mellon a minno", "Die bekannte Moria-Zeile.", "attested", moria),
+      choice("u1r11", "Welcher Ausdruck ist belegt, nicht Neo?", ["Mae govannen", "Hannon le", "beide sind Neo"], "Mae govannen", "Das Statuswissen schützt vor falschen Quellenannahmen.", "attested", moria),
+      type("u1r12", "Tippe das Wort für „Wald“.", "taur", "TAUR."),
+      choice("u1r13", "Was folgt in der Tor-Zeile auf „Pedo mellon a“?", ["minno", "govannen", "annon"], "minno", "Der letzte Baustein bedeutet „tritt ein“.", "attested", moria),
+      match("u1r14", "Ordne Formel und Status zu.", [{ left: "Mae govannen", right: "belegt" }, { left: "Hannon le", right: "Neo-Sindarin" }], "Die Statusangabe gehört immer mit zum Lernen.", "neo", neo),
+      choice("u1r15", "Abschluss: Welche Abfolge passt zur Ankunftsszene?", ["Gruß → Lager erkennen → Tor-Zeile", "Tor-Zeile → neues Verb erfinden → Gruß", "Dank → freie Konjugation → Wald"], "Gruß → Lager erkennen → Tor-Zeile", "Du verbindest nur bereits geprüfte Kursbausteine."),
+    ],
+  },
+];

@@ -1,0 +1,35 @@
+{
+  "formatVersion": "1",
+  "unit": 3,
+  "theme": "Im Wald",
+  "communicationGoals": [
+    "Waldorte, Wetter und Natur erkennen",
+    "den klassischen bestimmten Artikel i in einer kleinen, belegten Formmenge verstehen",
+    "weiche Mutation in festen Beispielen wiedererkennen"
+  ],
+  "grammarComponents": ["definite-article", "soft-mutation"],
+  "referenceGrammarComponents": ["adjective-position"],
+  "convention": "Klassische, im LotR-nahe belegte Kurskonvention i + Singular. Die spätere e/en-Variante wird nicht parallel akzeptiert.",
+  "newLexemes": [
+    { "lexemeId": "eldamo:1324303307", "lemma": "i¹", "gloss": "the", "mode": "productive-fixed-frames" },
+    { "lexemeId": "eldamo:3005081253", "lemma": "galadh", "gloss": "tree", "mode": "recognition" },
+    { "lexemeId": "eldamo:3362852287", "lemma": "las(s)", "gloss": "leaf", "mode": "recognition" },
+    { "lexemeId": "eldamo:3061781529", "lemma": "orn", "gloss": "tall straight tree", "mode": "recognition" },
+    { "lexemeId": "eldamo:524936671", "lemma": "hîth", "gloss": "mist", "mode": "productive" },
+    { "lexemeId": "eldamo:742218303", "lemma": "sîr", "gloss": "river, stream", "mode": "productive" },
+    { "lexemeId": "eldamo:1057523367", "lemma": "sarn", "gloss": "small stone", "mode": "productive" },
+    { "lexemeId": "eldamo:195870091", "lemma": "parth", "gloss": "grassland, lawn", "mode": "recognition" },
+    { "lexemeId": "eldamo:1460112939", "lemma": "tawar", "gloss": "forest, woodland", "mode": "recognition" },
+    { "lexemeId": "eldamo:3118136801", "lemma": "thind", "gloss": "grey", "mode": "recognition" },
+    { "lexemeId": "eldamo:509187197", "lemma": "morn", "gloss": "dark, black", "mode": "productive" },
+    { "lexemeId": "eldamo:1480623705", "lemma": "baran", "gloss": "brown, golden-brown", "mode": "recognition" },
+    { "lexemeId": "eldamo:184000497", "lemma": "peth", "gloss": "word", "mode": "productive-fixed-frame" },
+    { "lexemeId": "eldamo:3702347683", "lemma": "paur", "gloss": "fist", "mode": "recognition-fixed-frame" }
+  ],
+  "fixedForms": [
+    { "surface": "i beth", "translation": "das Wort", "status": "attested", "sourceRefIds": ["Eldamo:word-184000497"] },
+    { "surface": "i aladh", "translation": "der Baum", "status": "attested", "sourceRefIds": ["Eldamo:word-3005081253"] },
+    { "surface": "i adan", "translation": "der Mensch", "status": "attested", "sourceRefIds": ["Eldamo:word-753238821"] },
+    { "surface": "i baur", "translation": "die Faust", "status": "attested", "sourceRefIds": ["Eldamo:word-3702347683"] }
+  ]
+}

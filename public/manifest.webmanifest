@@ -1,0 +1,10 @@
+{
+  "name": "Tadlam – Sindarin lernen",
+  "short_name": "Tadlam",
+  "lang": "de",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f2e8",
+  "theme_color": "#163a32",
+  "icons": []
+}

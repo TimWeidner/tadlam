@@ -1,0 +1,4 @@
+language/raw/
+node_modules/
+dist/
+*.tsbuildinfo

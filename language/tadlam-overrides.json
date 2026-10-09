@@ -1,0 +1,72 @@
+{
+  "formatVersion": "1",
+  "customLexemes": [
+    {
+      "id": "tadlam:hannon-le",
+      "externalIds": [],
+      "lemma": "Hannon le",
+      "language": "neo-sindarin",
+      "partOfSpeech": ["phrase"],
+      "rawPartOfSpeech": ["phrase"],
+      "glosses": ["thank you"],
+      "confidence": "neo",
+      "markers": ["fan", "disputed", "legacy-film"],
+      "sourceRefIds": ["Eldamo:word-2772556329"],
+      "exerciseCandidate": true,
+      "tadlam": {
+        "courseApproved": true,
+        "note": "Filmgeprägte Neo-Sindarin-Formel; in Tadlam stets als Neo markieren."
+      }
+    }
+  ],
+  "morphology": [
+    {
+      "lexemeId": "eldamo:2086508063",
+      "lemma": "minna-",
+      "inflectionClass": "a-stem-imperative-o",
+      "sourceRefId": "Eldamo:word-2086508063"
+    },
+    {
+      "lexemeId": "eldamo:599418975",
+      "lemma": "ped-",
+      "inflectionClass": "bare-stem-imperative-o",
+      "sourceRefId": "Eldamo:word-3326716807"
+    },
+    {
+      "lexemeId": "eldamo:3923493535",
+      "lemma": "lasta-",
+      "inflectionClass": "a-stem-imperative-o",
+      "sourceRefId": "Eldamo:word-4103883957"
+    },
+    {
+      "lexemeId": "eldamo:2338511755",
+      "lemma": "mae govannen",
+      "inflectionClass": "fixed",
+      "sourceRefId": "Eldamo:word-2338511755"
+    },
+    {
+      "lexemeId": "tadlam:hannon-le",
+      "lemma": "Hannon le",
+      "inflectionClass": "fixed",
+      "sourceRefId": "Eldamo:word-2772556329"
+    }
+  ],
+  "mutations": [
+    {
+      "lexemeId": "eldamo:2964964287",
+      "kind": "soft",
+      "contexts": ["direct-object"],
+      "base": "mellon",
+      "surface": "vellon",
+      "sourceRefId": "Eldamo:word-2964964287"
+    },
+    {
+      "lexemeId": "eldamo:184000497",
+      "kind": "soft",
+      "contexts": ["direct-object"],
+      "base": "peth",
+      "surface": "beth",
+      "sourceRefId": "Eldamo:word-184000497"
+    }
+  ]
+}
