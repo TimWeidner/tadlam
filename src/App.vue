@@ -1181,10 +1181,12 @@ function playLibraryAnimation(
           </p>
           <div
             v-if="!reviewMode"
-            class="my-7 rounded-2xl bg-[#eef8ed] p-4 text-forest dark:bg-[#224438]"
+            class="my-7 rounded-2xl bg-[#eef8ed] p-4 text-forest dark:bg-[#315a45] dark:text-[#f4f8ee]"
           >
-            <strong class="text-3xl">{{ score }} %</strong
-            ><span class="ml-2 text-sm font-bold">Trefferquote</span>
+            <strong class="text-3xl dark:text-white">{{ score }} %</strong
+            ><span class="ml-2 text-sm font-bold dark:text-[#e0f3d6]"
+              >Trefferquote</span
+            >
           </div>
           <button
             class="mt-6 w-full rounded-2xl bg-leaf px-5 py-4 font-bold text-[#173b2b]"
