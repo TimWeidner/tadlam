@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build && node scripts/generate-sw.mjs",
-    "test": "vitest run && node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs",
+    "build": "vue-tsc -b && node scripts/generate-pwa-icons.mjs && vite build && node scripts/generate-sw.mjs",
+    "test": "vitest run && node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs scripts/pwa-config.test.mjs",
     "test:watch": "vitest",
     "test:language": "node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs",
     "language:import": "node scripts/language/import-eldamo.mjs",

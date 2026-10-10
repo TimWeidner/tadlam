@@ -1,10 +1,25 @@
 {
   "name": "Tadlam – Sindarin lernen",
   "short_name": "Tadlam",
+  "id": "./",
   "lang": "de",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f7f2e8",
+  "background_color": "#10251f",
   "theme_color": "#163a32",
-  "icons": []
+  "icons": [
+    {
+      "src": "./icons/tadlam-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/tadlam-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

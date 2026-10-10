@@ -13,9 +13,9 @@ async function filesIn(directory) {
 }
 
 const allFiles = await filesIn(output)
-const precache = ['/', ...allFiles
+const precache = ['./', ...allFiles
   .filter((file) => !file.endsWith('sw.js'))
-  .map((file) => `/${relative(output, file).replaceAll('\\', '/')}`)]
+  .map((file) => `./${relative(output, file).replaceAll('\\', '/')}`)]
 const serviceWorker = join(output, 'sw.js')
 const source = await readFile(serviceWorker, 'utf8')
 await writeFile(serviceWorker, source.replace('/*__TADLAM_PRECACHE__*/', precache.map(JSON.stringify).join(',')))

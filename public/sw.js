@@ -1,4 +1,4 @@
-const CACHE = 'tadlam-v2'
+const CACHE = 'tadlam-v3'
 const PRECACHE = [/*__TADLAM_PRECACHE__*/]
 
 self.addEventListener('install', (event) => {
@@ -14,5 +14,5 @@ self.addEventListener('fetch', (event) => {
     const copy = response.clone()
     caches.open(CACHE).then((cache) => cache.put(event.request, copy))
     return response
-  }).catch(() => caches.open(CACHE).then((cache) => cache.match('/index.html')))))
+  }).catch(() => caches.open(CACHE).then((cache) => cache.match('./index.html')))))
 })
