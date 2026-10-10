@@ -23,6 +23,7 @@ import {
   sourceLabel,
   sourceUrl,
 } from "./language/learner-content";
+import { randomizedMatchPairs, shuffled } from "./language/exercise-presentation";
 import { generateSentence } from "./language/syntax";
 
 type Screen = "learn" | "words" | "grammar" | "profile" | "library";
@@ -65,6 +66,10 @@ const matched = ref<string[]>([]);
 const matchMistakes = ref(0);
 const matchMessage = ref("");
 const matchMismatch = ref(false);
+const presentedChoices = ref<string[]>([]);
+const presentedTokens = ref<string[]>([]);
+const presentedMatchLeft = ref<Array<{ left: string; right: string }>>([]);
+const presentedMatchRight = ref<Array<{ left: string; right: string }>>([]);
 const showReset = ref(false);
 const fileInput = ref<HTMLInputElement | null>(null);
 const importError = ref("");
@@ -97,6 +102,17 @@ watch(
 );
 watch(darkMode, (value) => localStorage.setItem("tadlam-dark", String(value)));
 const current = computed(() => queue.value[exerciseIndex.value]);
+watch(
+  current,
+  (exercise) => {
+    presentedChoices.value = shuffled(exercise?.choices ?? []);
+    presentedTokens.value = shuffled(exercise?.tokens ?? []);
+    const presentation = randomizedMatchPairs(exercise?.pairs ?? []);
+    presentedMatchLeft.value = presentation.left;
+    presentedMatchRight.value = presentation.right;
+  },
+  { immediate: true },
+);
 const percent = computed(() =>
   Math.min(
     100,
@@ -876,7 +892,7 @@ function playLibraryAnimation(
             class="mt-7 grid gap-3"
           >
             <button
-              v-for="choice in current.choices"
+              v-for="choice in presentedChoices"
               :key="choice"
               class="choice dark:border-[#3c5e50] dark:bg-[#1d3d32] dark:text-white"
               :class="{
@@ -965,7 +981,7 @@ function playLibraryAnimation(
             </div>
             <div class="mt-4 flex flex-wrap gap-2">
               <button
-                v-for="token in current.tokens"
+                v-for="token in presentedTokens"
                 :key="token"
                 class="rounded-xl border-2 border-[#d6e2d6] px-3 py-2 font-bold dark:border-[#486859]"
                 :disabled="checked || ordered.includes(token)"
@@ -985,7 +1001,7 @@ function playLibraryAnimation(
             <div class="grid grid-cols-2 gap-3">
               <div class="grid gap-2">
                 <button
-                  v-for="pair in current.pairs"
+                  v-for="pair in presentedMatchLeft"
                   :key="pair.left"
                   class="choice !px-3 !py-3 dark:border-[#3c5e50] dark:bg-[#1d3d32]"
                   :class="{
@@ -1009,7 +1025,7 @@ function playLibraryAnimation(
               </div>
               <div class="grid gap-2">
                 <button
-                  v-for="pair in current.pairs"
+                  v-for="pair in presentedMatchRight"
                   :key="pair.right"
                   class="choice !px-3 !py-3 dark:border-[#3c5e50] dark:bg-[#1d3d32]"
                   :class="{
