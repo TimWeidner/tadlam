@@ -47,6 +47,14 @@ describe("lesson exercise set", () => {
     }
   });
 
+  it("does not use abstract sequence questions", () => {
+    expect(
+      lessons.flatMap((lesson) => lesson.exercises).some((exercise) =>
+        exercise.prompt.includes("Welche Abfolge passt"),
+      ),
+    ).toBe(false);
+  });
+
   it("rejects an incomplete authored pool instead of cloning questions", () => {
     expect(() => lessonExerciseSet({ ...lessons[0], exercises: [] })).toThrow(
       "erwartet werden 15",

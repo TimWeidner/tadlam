@@ -155,7 +155,7 @@ export const unitOneLessons: Lesson[] = [
       type("u1r12", "Tippe das Wort für „Wald“.", "taur", "TAUR."),
       choice("u1r13", "Was folgt in der Tor-Zeile auf „Pedo mellon a“?", ["minno", "govannen", "annon"], "minno", "Der letzte Baustein bedeutet „tritt ein“.", "attested", moria),
       match("u1r14", "Ordne Formel und Status zu.", [{ left: "Mae govannen", right: "belegt" }, { left: "Hannon le", right: "Neo-Sindarin" }], "Die Statusangabe gehört immer mit zum Lernen.", "neo", neo),
-      choice("u1r15", "Abschluss: Welche Abfolge passt zur Ankunftsszene?", ["Gruß → Lager erkennen → Tor-Zeile", "Tor-Zeile → neues Verb erfinden → Gruß", "Dank → freie Konjugation → Wald"], "Gruß → Lager erkennen → Tor-Zeile", "Du verbindest nur bereits geprüfte Kursbausteine."),
+      choice("u1r15", "Welche feste Tor-Zeile bedeutet „Sage ‚Freund‘ und tritt ein“?", ["Pedo mellon a minno", "Mae govannen", "Hannon le"], "Pedo mellon a minno", "Die Moria-Zeile wird als feste, kuratierte Einheit wiederholt."),
     ],
   },
 ];
