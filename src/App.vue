@@ -45,7 +45,6 @@ const readProgress = (): Progress => {
 const progress = ref<Progress>(readProgress());
 const screen = ref<Screen>("learn");
 const isDevelopment = import.meta.env.DEV;
-const darkMode = ref(localStorage.getItem("tadlam-dark") === "true");
 const activeTitle = ref("");
 const activeLesson = ref<Lesson | null>(null);
 const queue = ref<Exercise[]>([]);
@@ -101,7 +100,6 @@ watch(
   (value) => localStorage.setItem(STORAGE_KEY, JSON.stringify(value)),
   { deep: true },
 );
-watch(darkMode, (value) => localStorage.setItem("tadlam-dark", String(value)));
 const current = computed(() => queue.value[exerciseIndex.value]);
 watch(
   current,
@@ -822,12 +820,7 @@ function playLibraryAnimation(
 </script>
 
 <template>
-  <main
-    class="grain min-h-screen transition-colors"
-    :class="
-      darkMode ? 'dark bg-[#10251f] text-[#edf4e9]' : 'bg-parchment text-ink'
-    "
-  >
+  <main class="dark grain min-h-screen bg-[#10251f] text-[#edf4e9]">
     <div class="mx-auto min-h-screen max-w-xl px-4 pb-10 pt-5 sm:px-6">
       <header class="mb-6 flex items-center justify-between">
         <button
@@ -2226,31 +2219,6 @@ function playLibraryAnimation(
                 @click="progress.goal = amount"
               >
                 {{ amount }}
-              </button>
-            </div>
-          </div>
-          <div
-            class="mt-4 rounded-2xl bg-white p-5 shadow-sm dark:bg-[#18362c]"
-          >
-            <div class="flex items-center justify-between">
-              <div>
-                <h2
-                  class="font-display text-xl font-bold text-forest dark:text-[#edf4e9]"
-                >
-                  Dunkler Wald
-                </h2>
-                <p class="text-sm text-[#69796f] dark:text-[#b4c9b8]">
-                  Dunkles Farbschema
-                </p>
-              </div>
-              <button
-                class="rounded-xl px-4 py-2 font-bold"
-                :class="
-                  darkMode ? 'bg-leaf text-white' : 'bg-[#edf3ed] text-moss'
-                "
-                @click="darkMode = !darkMode"
-              >
-                {{ darkMode ? "An" : "Aus" }}
               </button>
             </div>
           </div>
