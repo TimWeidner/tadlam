@@ -139,9 +139,9 @@ export const unitOneLessons: Lesson[] = [
     subtitle: "Anwenden · Abschlussrunde",
     icon: "◆",
     phase: "ramp",
-    lexemeIds: ["eldamo:235290361", "eldamo:209902113", "eldamo:3420722951", "eldamo:2964964287", "eldamo:3606114301", "eldamo:809570117", "eldamo:2338511755", "eldamo:3670583905", "tadlam:hannon-le"],
+    lexemeIds: ["eldamo:209902113", "eldamo:3420722951", "eldamo:2964964287", "eldamo:3606114301", "eldamo:809570117", "eldamo:2338511755", "eldamo:3670583905", "tadlam:hannon-le"],
     exercises: [
-      choice("u1r1", "Welche Grundbedeutung ist für „elia-“ verzeichnet?", ["einem Werk zum Gedeihen verhelfen", "eintreten", "Freund"], "einem Werk zum Gedeihen verhelfen", "Dieses Verb wird nur erkannt, nicht frei flektiert."),
+      choice("u1r1", "Du triffst am Feuer eine neue Person. Welches Wort kannst du als Gruß erkennen?", ["suilad", "mellon", "taur"], "suilad", "Suilad bezeichnet einen Gruß."),
       choice("u1r2", "Welche Grundbedeutung ist für „edra-“ verzeichnet?", ["sich öffnen", "sehen", "Wald"], "sich öffnen", "Auch dieses Verb bleibt zunächst Erkennungswortschatz."),
       choice("u1r3", "Eine Person kommt am Lager an. Welche Formel passt zuerst?", ["Mae govannen", "Hannon le", "Pedo mellon a minno"], "Mae govannen", "Zuerst begrüßen, dann folgen die anderen Schritte."),
       match("u1r4", "Ordne die Kernwörter der Unit zu.", [{ left: "mellon", right: "Freund" }, { left: "annon", right: "großes Tor" }, { left: "taur", right: "Wald" }], "Diese Wörter sind jetzt für den Abruf freigegeben."),

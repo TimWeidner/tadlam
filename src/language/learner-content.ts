@@ -122,15 +122,6 @@ const wordSeed: Omit<LearnerWord, "uses">[] = [
     note: "In Unit 1 nur zum Erkennen.",
   },
   {
-    lexemeId: "eldamo:235290361",
-    surface: "elia-",
-    translation: "einem Werk zum Gedeihen verhelfen",
-    pronunciation: "E-li-a",
-    status: "attested",
-    sourceRefId: "Eldamo:word-235290361",
-    note: "In Unit 1 nur zum Erkennen.",
-  },
-  {
     lexemeId: "eldamo:209902113",
     surface: "edra-",
     translation: "sich öffnen",

@@ -16,13 +16,13 @@ Damit hat Unit 1 derzeit vier Knoten (zwei Wortschatzportionen, Grammatik, Ramp-
 
 ## Unit 1 · Am Lager ankommen
 
-13 neue, belegte Grundformen bilden den Kern: Begrüßung, Lager, Feuer, Tor und Wald sowie die ersten Handlungsverben. Dazu kommen drei feste Satzformeln. `Hannon le` bleibt ausdrücklich eine **Neo-Sindarin-Formel** und leitet keine allgemeine Regel ab. `eneth` und das stark irreguläre `gwae-` wurden nach Quellenprüfung aus Unit 1 zurückgestellt.
+12 neue, belegte Grundformen bilden den Kern: Begrüßung, Lager, Feuer, Tor und Wald sowie die ersten Handlungsverben. Dazu kommen drei feste Satzformeln. `Hannon le` bleibt ausdrücklich eine **Neo-Sindarin-Formel** und leitet keine allgemeine Regel ab. `elia-`, `eneth` und das stark irreguläre `gwae-` wurden aus Unit 1 zurückgestellt, weil sie keine unmittelbare Funktion in den ersten LARP-Szenen haben.
 
 | Bereich | Grundformen |
 | --- | --- |
 | Begrüßung und Personen | `mae`, `suilad`, `mellon` |
 | Ort | `echad`, `naur`, `annon`, `taur` |
-| Handlung | `ped-`, `minna-`, `tol-`, `cen-`, `elia-`, `edra-` |
+| Handlung | `ped-`, `minna-`, `tol-`, `cen-`, `edra-` |
 
 Produktiv werden zunächst nur die explizit freigegebenen Imperative `ped- → pedo` und `minna- → minno`; die übrigen Verben bleiben bis zur jeweiligen Formenfreigabe Erkennungswortschatz. Die festen Formeln sind `Mae govannen`, `Hannon le` und die belegte Moria-Zeile `Pedo mellon a minno.`; in Tadlam wird deren Rätsel-Lesart „Sage ‚Freund‘ und tritt ein“ geübt.
 

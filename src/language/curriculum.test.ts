@@ -5,6 +5,7 @@ import {
   curriculumReport,
   validateCurriculum,
 } from "./curriculum";
+import { learnerVocabulary } from "./learner-content";
 
 describe("curriculum validation", () => {
   it("keeps every currently declared course word traceable", () => {
@@ -17,6 +18,17 @@ describe("curriculum validation", () => {
     expect(unitOne.introduced).toContain("eldamo:2964964287");
     expect(unitOne.introduced).toContain("tadlam:hannon-le");
     expect(unitOne.gaps).toHaveLength(0);
+  });
+
+  it("keeps unrelated recognition vocabulary out of the first unit", () => {
+    const eliaId = "eldamo:235290361";
+    expect(
+      lessons
+        .filter((lesson) => lesson.unit === 1)
+        .some((lesson) => lesson.lexemeIds?.includes(eliaId)),
+    ).toBe(false);
+    expect(curriculumMap.entries.some((entry) => entry.lexemeId === eliaId)).toBe(false);
+    expect(learnerVocabulary.some((word) => word.lexemeId === eliaId)).toBe(false);
   });
 
   it("rejects a word that is used before introduction", () => {
