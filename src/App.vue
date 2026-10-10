@@ -80,6 +80,7 @@ const completionAnimation = ref<{
 } | null>(null);
 const completionColorRevealed = ref(false);
 const nextBubbleColorRevealed = ref(false);
+const revealingUnit = ref<number | null>(null);
 const animationRuns = ref<Record<string, number>>({
   flip: 0,
   next: 0,
@@ -412,7 +413,7 @@ function isUnitUnlocked(unit: number) {
   );
 }
 function shouldRevealUnit(unit: number) {
-  return unit > 1 && isUnitUnlocked(unit) && isUnitComplete(unit - 1);
+  return revealingUnit.value === unit;
 }
 function isUnitComplete(unit: number) {
   if (previewCompletedUnit === unit) return true;
@@ -673,6 +674,12 @@ function finish() {
   result.value = true;
 }
 function playCompletionAnimation(lessonId: string) {
+  const completedLessonIndex = pathLessons.findIndex(
+    (lesson) => lesson.id === lessonId,
+  );
+  const completedLesson = pathLessons[completedLessonIndex];
+  const nextLesson =
+    completedLessonIndex >= 0 ? pathLessons[completedLessonIndex + 1] : undefined;
   completionColorRevealed.value = false;
   completionAnimation.value = { lessonId, phase: "flip" };
   window.setTimeout(() => {
@@ -687,6 +694,17 @@ function playCompletionAnimation(lessonId: string) {
     if (completionAnimation.value?.lessonId === lessonId) {
       nextBubbleColorRevealed.value = false;
       completionAnimation.value = { lessonId, phase: "next" };
+      if (
+        completedLesson &&
+        nextLesson &&
+        nextLesson.unit !== completedLesson.unit
+      ) {
+        revealingUnit.value = nextLesson.unit;
+        window.setTimeout(() => {
+          if (revealingUnit.value === nextLesson.unit)
+            revealingUnit.value = null;
+        }, 1800);
+      }
       window.setTimeout(() => {
         if (completionAnimation.value?.lessonId === lessonId)
           nextBubbleColorRevealed.value = true;
