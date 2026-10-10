@@ -1288,6 +1288,69 @@ function playLibraryAnimation(
               </div>
             </div>
           </div>
+          <button
+            v-if="showReviewCard"
+            class="fixed inset-0 z-30 cursor-default"
+            aria-label="Wiederholung schließen"
+            @click="showReviewCard = false"
+          />
+          <article
+            v-if="progress.reviewExerciseIds.length"
+            class="fixed bottom-5 right-4 z-40 flex flex-col items-end sm:bottom-8 sm:right-8"
+          >
+            <div
+              v-if="showReviewCard"
+              id="review-popover"
+              class="relative mb-4 w-64 rounded-2xl border-2 border-[#e5c95b] bg-[#4d401d] p-4 text-left shadow-float"
+              @click.stop
+            >
+              <span
+                class="absolute -bottom-2 right-6 h-4 w-4 rotate-45 border-b-2 border-r-2 border-[#e5c95b] bg-[#4d401d]"
+              />
+              <button
+                class="absolute right-3 top-3 grid h-7 w-7 place-items-center rounded-full text-[#fff0a7] transition hover:bg-white/10"
+                aria-label="Wiederholung schließen"
+                @click="showReviewCard = false"
+              >
+                ×
+              </button>
+              <div class="relative pr-6">
+                <p
+                  class="text-[10px] font-bold uppercase tracking-[.16em] text-[#fff0a7]"
+                >
+                  Wiederholen
+                </p>
+                <h2 class="mt-1 font-display text-2xl font-bold text-white">
+                  Deine Wiederholung
+                </h2>
+                <p class="mt-1 text-sm text-[#fff3ca]">
+                  Karten, die dir zuletzt schwergefallen sind.
+                </p>
+                <button
+                  class="mt-4 w-full rounded-xl bg-[#f5d96a] px-4 py-3 font-bold text-[#44370e]"
+                  @click="startReview"
+                >
+                  Loslegen
+                </button>
+              </div>
+            </div>
+            <button
+              class="relative grid h-16 w-16 place-items-center rounded-full border-4 border-[#f5d96a] bg-[#fff2ba] text-3xl text-[#5b4716] shadow-float transition hover:scale-105 active:scale-95"
+              :aria-expanded="showReviewCard"
+              aria-controls="review-popover"
+              title="Persönliche Wiederholung"
+              @click="
+                selectedPathLessonId = null;
+                showReviewCard = !showReviewCard;
+              "
+            >
+              ↻
+              <span
+                class="absolute -right-1 -top-1 grid h-6 min-w-6 place-items-center rounded-full bg-[#d75b43] px-1 text-[10px] font-bold text-white"
+                >{{ progress.reviewExerciseIds.length }}</span
+              >
+            </button>
+          </article>
           <div
             class="relative mx-auto flex max-w-xl flex-col items-center gap-12 px-12 pb-[35vh] pt-24"
           >
@@ -1340,48 +1403,6 @@ function playLibraryAnimation(
                 stroke-dasharray="3 13"
               />
             </svg>
-            <article
-              v-if="progress.reviewExerciseIds.length"
-              class="relative z-10 -translate-x-20"
-            >
-              <button
-                class="grid h-20 w-20 place-items-center rounded-full border-4 border-[#f5d96a] bg-[#fff2ba] text-3xl text-[#5b4716] shadow-float transition active:scale-95"
-                title="Persönliche Wiederholung"
-                @click="
-                  selectedPathLessonId = null;
-                  showReviewCard = true;
-                "
-              >
-                ↻
-              </button>
-              <div
-                v-if="showReviewCard"
-                class="relative mt-5 w-64 rounded-2xl border-2 border-[#e5c95b] bg-[#4d401d] p-4 text-left shadow-float"
-              >
-                <span
-                  class="absolute -top-2 left-10 h-4 w-4 rotate-45 border-l-2 border-t-2 border-[#e5c95b] bg-[#4d401d]"
-                />
-                <div class="relative">
-                  <p
-                    class="text-[10px] font-bold uppercase tracking-[.16em] text-[#fff0a7]"
-                  >
-                    Wiederholen
-                  </p>
-                  <h2 class="mt-1 font-display text-2xl font-bold text-white">
-                    Deine Wiederholung
-                  </h2>
-                  <p class="mt-1 text-sm text-[#fff3ca]">
-                    Karten, die dir zuletzt schwergefallen sind.
-                  </p>
-                  <button
-                    class="mt-4 w-full rounded-xl bg-[#f5d96a] px-4 py-3 font-bold text-[#44370e]"
-                    @click="startReview"
-                  >
-                    Loslegen
-                  </button>
-                </div>
-              </div>
-            </article>
             <template v-for="(lesson, index) in pathLessons" :key="lesson.id">
               <div
                 v-if="index && pathLessons[index - 1].unit !== lesson.unit"
