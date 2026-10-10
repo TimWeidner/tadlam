@@ -63,6 +63,23 @@ describe("lesson exercise set", () => {
     ).toBe(false);
   });
 
+  it("keeps typed answers in the first unit to single words", () => {
+    const unitOneExercises = lessons
+      .filter((lesson) => lesson.unit === 1)
+      .flatMap((lesson) => lesson.exercises);
+
+    expect(
+      unitOneExercises
+        .filter((exercise) => exercise.kind === "type")
+        .every((exercise) => !/\s/.test(exercise.answer)),
+    ).toBe(true);
+    expect(
+      unitOneExercises.some((exercise) =>
+        /tor-aufforderung/i.test(exercise.prompt),
+      ),
+    ).toBe(false);
+  });
+
   it("rejects an incomplete authored pool instead of cloning questions", () => {
     expect(() => lessonExerciseSet({ ...lessons[0], exercises: [] })).toThrow(
       "erwartet werden 15",
