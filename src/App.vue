@@ -1250,26 +1250,20 @@ function playLibraryAnimation(
                     class="mt-1 font-display text-2xl font-bold"
                     :class="{
                       'tadlam-fog-reveal': shouldRevealUnit(activePathUnit),
+                      'tadlam-fog-hidden': !isUnitUnlocked(activePathUnit),
                     }"
                   >
-                    {{
-                      isUnitUnlocked(activePathUnit)
-                        ? activeUnitDetails.title
-                        : "???"
-                    }}
+                    {{ activeUnitDetails.title }}
                   </h1>
                   <p
                     class="mt-1 text-xs text-[#d8e5d7]"
                     :class="{
                       'tadlam-fog-reveal tadlam-fog-reveal-delayed':
                         shouldRevealUnit(activePathUnit),
+                      'tadlam-fog-hidden': !isUnitUnlocked(activePathUnit),
                     }"
                   >
-                    {{
-                      isUnitUnlocked(activePathUnit)
-                        ? activeUnitDetails.subtitle
-                        : "Noch nicht freigeschaltet"
-                    }}
+                    {{ activeUnitDetails.subtitle }}
                   </p>
                 </div>
                 <span
@@ -1424,26 +1418,20 @@ function playLibraryAnimation(
                     class="mt-1 font-display text-2xl font-bold text-white"
                     :class="{
                       'tadlam-fog-reveal': shouldRevealUnit(lesson.unit),
+                      'tadlam-fog-hidden': !isUnitUnlocked(lesson.unit),
                     }"
                   >
-                    {{
-                      isUnitUnlocked(lesson.unit)
-                        ? unitDetails[lesson.unit].title
-                        : "???"
-                    }}
+                    {{ unitDetails[lesson.unit].title }}
                   </h2>
                   <p
                     class="mt-1 text-xs text-[#d8e5d7]"
                     :class="{
                       'tadlam-fog-reveal tadlam-fog-reveal-delayed':
                         shouldRevealUnit(lesson.unit),
+                      'tadlam-fog-hidden': !isUnitUnlocked(lesson.unit),
                     }"
                   >
-                    {{
-                      isUnitUnlocked(lesson.unit)
-                        ? unitDetails[lesson.unit].subtitle
-                        : "Noch nicht freigeschaltet"
-                    }}
+                    {{ unitDetails[lesson.unit].subtitle }}
                   </p>
                 </div>
               </div>
