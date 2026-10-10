@@ -101,7 +101,7 @@ export function pairExercises(
     [pair.plural, ...rotated(pairs.filter((candidate) => candidate.id !== pair.id).map((candidate) => candidate.plural), index, 2)];
 
   for (const [index, pair] of pairs.slice(0, 6).entries()) {
-    exercises.push(choice(`${prefix}-plural-${index}`, `Welche belegte Mehrzahl gehört zu „${pair.singular}“ (${pair.gloss})?`, pluralChoices(pair, index), pair.plural, "Dieses Paar wird einzeln gelernt, nicht aus einer Lautregel erraten."));
+    exercises.push(choice(`${prefix}-plural-${index}`, `Welche Mehrzahl gehört zu „${pair.singular}“ (${pair.gloss})?`, pluralChoices(pair, index), pair.plural, "Dieses Paar wird einzeln gelernt, nicht aus einer Lautregel erraten."));
   }
   for (let index = 0; index < pairs.length; index += 3) {
     const group = pairs.slice(index, index + 3);

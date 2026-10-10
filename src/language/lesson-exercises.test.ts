@@ -55,6 +55,14 @@ describe("lesson exercise set", () => {
     ).toBe(false);
   });
 
+  it("does not quiz source-status labels", () => {
+    expect(
+      lessons.flatMap((lesson) => lesson.exercises).some((exercise) =>
+        /belegt|neo-sindarin|status/i.test(exercise.prompt),
+      ),
+    ).toBe(false);
+  });
+
   it("rejects an incomplete authored pool instead of cloning questions", () => {
     expect(() => lessonExerciseSet({ ...lessons[0], exercises: [] })).toThrow(
       "erwartet werden 15",
