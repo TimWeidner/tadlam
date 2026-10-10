@@ -79,7 +79,7 @@ describe("lesson exercise set", () => {
       ),
     ).toBe(false);
     expect(
-      unitOneExercises.some((exercise) => /moria/i.test(exercise.prompt)),
+      unitOneExercises.some((exercise) => /inschrift/i.test(exercise.prompt)),
     ).toBe(false);
   });
 

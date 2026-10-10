@@ -1,7 +1,7 @@
 import type { Exercise, Lesson } from "../domain";
 
 const source = "Eldamo · kuratierter Unit-1-Wortschatz";
-const gateInscription = "Tolkien · Inschrift am Tor";
+const gateInscription = "Tolkien · belegte Formel";
 const neo = "Neo-Sindarin · Kurskonvention";
 
 const choice = (
@@ -115,21 +115,21 @@ export const unitOneLessons: Lesson[] = [
     phase: "grammar",
     lexemeIds: ["eldamo:599418975", "eldamo:2086508063", "eldamo:3670583905", "eldamo:2964964287"],
     exercises: [
-      choice("u1g1", "Auf einer Inschrift am Tor steht: „Pedo mellon a minno.“ Was bedeutet das hier?", ["Sage „Freund“ und tritt ein.", "Der Freund bewacht das Tor.", "Der Wald ist groß."], "Sage „Freund“ und tritt ein.", "Du brauchst kein Vorwissen: Wir lernen diese kurze Torinschrift als feste Formel.", "attested", gateInscription),
-      choice("u1g2", "In der Inschrift am Tor bedeutet „pedo“ …", ["sprich, sage!", "tritt ein!", "komm!"], "sprich, sage!", "Die Form gehört zu ped-.", "attested", gateInscription),
-      choice("u1g3", "In der Inschrift am Tor bedeutet „minno“ …", ["tritt ein!", "danke!", "sieh!"], "tritt ein!", "Die Form gehört zu minna-.", "attested", gateInscription),
+      choice("u1g1", "Was bedeutet „Pedo mellon a minno“?", ["Sage „Freund“ und tritt ein.", "Der Freund bewacht das Tor.", "Der Wald ist groß."], "Sage „Freund“ und tritt ein.", "Lerne den Satz zunächst als feste Übersetzung.", "attested", gateInscription),
+      choice("u1g2", "Für „Sage ‚Freund‘ und tritt ein“ bedeutet „pedo“ …", ["sprich, sage!", "tritt ein!", "komm!"], "sprich, sage!", "Die Form gehört zu ped-.", "attested", gateInscription),
+      choice("u1g3", "Für „Sage ‚Freund‘ und tritt ein“ bedeutet „minno“ …", ["tritt ein!", "danke!", "sieh!"], "tritt ein!", "Die Form gehört zu minna-.", "attested", gateInscription),
       match("u1g4", "Ordne Stamm und kuratierte Imperativform zu.", [{ left: "ped-", right: "pedo" }, { left: "minna-", right: "minno" }], "Nur diese beiden Imperativbildungen sind in Unit 1 produktiv freigegeben.", "attested", gateInscription),
-      order("u1g5", "Ordne die Inschrift am Tor.", ["mellon", "minno", "Pedo", "a"], "Pedo mellon a minno", "Die kleine Verbindung a steht zwischen mellon und minno.", "attested", gateInscription),
-      cloze("u1g6", "Vervollständige die Inschrift am Tor: Pedo mellon a ___.", ["minno", "govannen", "taur"], "minno", "Die letzte Aufforderung bedeutet „tritt ein“.", "attested", gateInscription),
+      order("u1g5", "Ordne: „Sage ‚Freund‘ und tritt ein.“", ["mellon", "minno", "Pedo", "a"], "Pedo mellon a minno", "Die kleine Verbindung a steht zwischen mellon und minno.", "attested", gateInscription),
+      cloze("u1g6", "Vervollständige „Sage ‚Freund‘ und tritt ein“: Pedo mellon a ___.", ["minno", "govannen", "taur"], "minno", "Die letzte Aufforderung bedeutet „tritt ein“.", "attested", gateInscription),
       choice("u1g7", "Welche Grundform steckt hinter „pedo“?", ["ped-", "minna-", "tol-"], "ped-", "Die Grundform wird im Wörterbuch mit Bindestrich gezeigt."),
       type("u1g8", "Tippe die kuratierte Form für „Sprich!/Sage!“.", "pedo", "PE-do.", "attested", gateInscription),
       choice("u1g9", "Welche Grundform steckt hinter „minno“?", ["minna-", "ped-", "cen-"], "minna-", "Die Imperativform endet hier auf -o."),
-      order("u1g10", "Ordne die Inschrift am Tor erneut.", ["a", "Pedo", "minno", "mellon"], "Pedo mellon a minno", "Zuerst kommt die Aufforderung zu sprechen.", "attested", gateInscription),
-      choice("u1g11", "Welche Bedeutung hat die Inschrift am Tor?", ["Sage „Freund“ und tritt ein.", "Sei gegrüßt, Freund.", "Komm zum Lagerfeuer."], "Sage „Freund“ und tritt ein.", "Hier wird die Inschrift als feste Formel gelernt.", "attested", gateInscription),
+      order("u1g10", "Ordne erneut: „Sage ‚Freund‘ und tritt ein.“", ["a", "Pedo", "minno", "mellon"], "Pedo mellon a minno", "Zuerst kommt die Aufforderung zu sprechen.", "attested", gateInscription),
+      choice("u1g11", "Welche Bedeutung hat „Pedo mellon a minno“?", ["Sage „Freund“ und tritt ein.", "Sei gegrüßt, Freund.", "Komm zum Lagerfeuer."], "Sage „Freund“ und tritt ein.", "Lerne die Formel als feste Übersetzung.", "attested", gateInscription),
       type("u1g12", "Tippe die kuratierte Form für „Tritt ein!“.", "minno", "MIN-no.", "attested", gateInscription),
-      cloze("u1g13", "Vervollständige die Inschrift am Tor: ___ mellon a minno.", ["Pedo", "Mae", "Hannon"], "Pedo", "Die erste Form gehört zu ped-.", "attested", gateInscription),
-      match("u1g14", "Ordne Formen und Bedeutung zu.", [{ left: "pedo", right: "sprich, sage!" }, { left: "minno", right: "tritt ein!" }, { left: "mellon", right: "Freund" }], "Die Anrede mellon bleibt in der Inschrift unverändert.", "attested", gateInscription),
-      choice("u1g15", "Welches Wort steht in der Inschrift am Tor zwischen „Pedo“ und „a“?", ["mellon", "minno", "pedo"], "mellon", "Mellon bedeutet „Freund“.", "attested", gateInscription),
+      cloze("u1g13", "Vervollständige „Sage ‚Freund‘ und tritt ein“: ___ mellon a minno.", ["Pedo", "Mae", "Hannon"], "Pedo", "Die erste Form gehört zu ped-.", "attested", gateInscription),
+      match("u1g14", "Ordne Formen und Bedeutung zu.", [{ left: "pedo", right: "sprich, sage!" }, { left: "minno", right: "tritt ein!" }, { left: "mellon", right: "Freund" }], "So setzt sich „Sage ‚Freund‘ und tritt ein“ zusammen.", "attested", gateInscription),
+      choice("u1g15", "Welches Wort bedeutet in „Pedo mellon a minno“ „Freund“?", ["mellon", "minno", "pedo"], "mellon", "Mellon bedeutet „Freund“.", "attested", gateInscription),
     ],
   },
   {
@@ -150,12 +150,12 @@ export const unitOneLessons: Lesson[] = [
       type("u1r7", "Tippe das Wort für „großes Tor“.", "annon", "AN-non."),
       choice("u1r8", "Welche Form ist der Imperativ zu minna-?", ["minno", "minna-", "pedo"], "minno", "Die Form wurde an der Wache geübt."),
       cloze("u1r9", "Ein Weg durch den Wald führt durch den ___.", ["taur", "mellon", "suilad"], "taur", "Hier wird nur Wortschatz abgefragt, kein neuer Satzbau."),
-      order("u1r10", "Ordne die Inschrift am Tor.", ["minno", "a", "mellon", "Pedo"], "Pedo mellon a minno", "Die bekannte Inschrift am Tor.", "attested", gateInscription),
+      order("u1r10", "Ordne: „Sage ‚Freund‘ und tritt ein.“", ["minno", "a", "mellon", "Pedo"], "Pedo mellon a minno", "Die bekannte feste Formel.", "attested", gateInscription),
       choice("u1r11", "Welche Formel passt, wenn du jemanden am Lager begrüßt?", ["Mae govannen", "Hannon le", "Pedo mellon a minno"], "Mae govannen", "Begrüße zuerst, bevor du dankst oder eine Aufforderung gibst.", "attested", gateInscription),
       type("u1r12", "Tippe das Wort für „Wald“.", "taur", "TAUR."),
-      choice("u1r13", "Was folgt in der Inschrift am Tor auf „Pedo mellon a“?", ["minno", "govannen", "annon"], "minno", "Der letzte Baustein bedeutet „tritt ein“.", "attested", gateInscription),
+      choice("u1r13", "Welches Wort ergänzt „Sage ‚Freund‘ und tritt ein“: Pedo mellon a ___?", ["minno", "govannen", "annon"], "minno", "Der letzte Baustein bedeutet „tritt ein“.", "attested", gateInscription),
       match("u1r14", "Ordne die Formeln ihren Situationen zu.", [{ left: "Mae govannen", right: "jemanden begrüßen" }, { left: "Hannon le", right: "für Hilfe danken" }], "Wähle die Formel nach der Spielsituation.", "neo", neo),
-      choice("u1r15", "Welche Inschrift am Tor bedeutet „Sage ‚Freund‘ und tritt ein“?", ["Pedo mellon a minno", "Mae govannen", "Hannon le"], "Pedo mellon a minno", "Die Inschrift wird als feste Einheit wiederholt."),
+      choice("u1r15", "Wie heißt „Sage ‚Freund‘ und tritt ein“?", ["Pedo mellon a minno", "Mae govannen", "Hannon le"], "Pedo mellon a minno", "Die Formel wird als feste Einheit wiederholt."),
     ],
   },
 ];
