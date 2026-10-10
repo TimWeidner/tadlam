@@ -78,6 +78,9 @@ describe("lesson exercise set", () => {
         /tor-aufforderung/i.test(exercise.prompt),
       ),
     ).toBe(false);
+    expect(
+      unitOneExercises.some((exercise) => /moria/i.test(exercise.prompt)),
+    ).toBe(false);
   });
 
   it("rejects an incomplete authored pool instead of cloning questions", () => {
