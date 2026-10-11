@@ -49,6 +49,9 @@ button { -webkit-tap-highlight-color: transparent; }
 
 .review-select { @apply block w-full rounded-xl border border-[#5d8879] bg-[#0d2c25] px-3 py-2 font-medium text-[#f7f2e8] outline-none focus:ring-2 focus:ring-[#bcdf90]; }
 .review-option { @apply block w-full rounded-2xl border-2 border-[#d2ddd4] bg-white px-4 py-3 text-left font-semibold; }
+.review-gloss-trigger { @apply cursor-pointer text-left underline decoration-2 decoration-[#75a68e] underline-offset-8 transition hover:text-[#315c4a] focus:outline-none focus:ring-4 focus:ring-[#bcdf90]/50; }
+.review-gloss-popover { @apply relative z-10 mt-4 rounded-2xl border border-[#8ca99a] bg-[#eaf4e7] px-4 py-3 text-sm text-[#315c4a] shadow-lg; }
+.review-gloss-popover::before { content: ""; position: absolute; top: -7px; left: 1.4rem; width: 14px; height: 14px; transform: rotate(45deg); border-top: 1px solid #8ca99a; border-left: 1px solid #8ca99a; background: #eaf4e7; }
 .review-tag { @apply rounded-full border border-[#719484] px-3 py-1.5 text-xs font-bold text-[#e5eee2] transition hover:border-[#bcdf90]; }
 .review-tag-active { @apply border-[#bcdf90] bg-[#315c4a] text-[#f7f2e8]; }
 .review-note { @apply block w-full resize-y rounded-2xl border border-[#719484] bg-[#0d2c25] px-4 py-3 font-normal text-[#f7f2e8] outline-none placeholder:text-[#9db4a6] focus:ring-2 focus:ring-[#bcdf90]; }

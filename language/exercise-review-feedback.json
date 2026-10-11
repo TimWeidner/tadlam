@@ -1,5 +1,98 @@
 {
   "formatVersion": "1",
-  "updatedAt": null,
-  "reviews": []
+  "updatedAt": "2026-10-11T14:22:20.357Z",
+  "reviews": [
+    {
+      "exerciseId": "u1a1",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [
+        "klar"
+      ],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:12:35.320Z"
+    },
+    {
+      "exerciseId": "u1a2",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:12:41.689Z"
+    },
+    {
+      "exerciseId": "u1a3",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:13:16.690Z"
+    },
+    {
+      "exerciseId": "u1a4",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:13:43.876Z"
+    },
+    {
+      "exerciseId": "u1a5",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "needs-revision",
+      "tags": [],
+      "note": "Der Hinweis ist nicht wirklich hilfreich für User, einfach weglassen falls es dem nutzer nicht hilft.",
+      "reviewedAt": "2026-10-11T14:17:45.647Z"
+    },
+    {
+      "exerciseId": "u1a6",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "needs-revision",
+      "tags": [],
+      "note": "Der Hinweis löst die Übung. Weglassen.",
+      "reviewedAt": "2026-10-11T14:18:27.175Z"
+    },
+    {
+      "exerciseId": "u1a7",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:21:43.821Z"
+    },
+    {
+      "exerciseId": "u1a8",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T14:21:51.736Z"
+    },
+    {
+      "exerciseId": "u1a9",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "needs-revision",
+      "tags": [],
+      "note": "Der Hinweis kann weg",
+      "reviewedAt": "2026-10-11T14:22:05.317Z"
+    },
+    {
+      "exerciseId": "u1a10",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "needs-revision",
+      "tags": [],
+      "note": "Der Hinweis hilft gar nichts",
+      "reviewedAt": "2026-10-11T14:22:20.355Z"
+    }
+  ]
 }

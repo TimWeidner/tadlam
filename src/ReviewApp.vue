@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
 import { lessons, type Exercise, type Lesson } from "./domain";
+import { learnerVocabulary } from "./language/learner-content";
 import {
   emptyExerciseReviewDataset,
   type ExerciseReview,
@@ -11,6 +12,13 @@ import {
 interface ReviewExercise {
   lesson: Lesson;
   exercise: Exercise;
+}
+
+interface ExerciseTitle {
+  label: string;
+  isElvish: boolean;
+  pronunciation?: string;
+  meaning?: string;
 }
 
 const feedbackTags = [
@@ -53,6 +61,47 @@ const reviewedCount = computed(() => dataset.value.reviews.length);
 const acceptedCount = computed(
   () => dataset.value.reviews.filter((review) => review.decision === "accepted").length,
 );
+const vocabularyBySurface = new Map(
+  learnerVocabulary.map((word) => [word.surface.normalize("NFC").toLocaleLowerCase("de-DE"), word]),
+);
+const titlePopoverOpen = ref(false);
+
+function plain(value: string) {
+  return value.replace(/[.!?,;:]/g, "").trim();
+}
+
+function exerciseTitle(exercise: Exercise): ExerciseTitle {
+  const quoted = exercise.prompt.match(/„([^“]+)“/)?.[1];
+  if (quoted) {
+    const word = vocabularyBySurface.get(plain(quoted).normalize("NFC").toLocaleLowerCase("de-DE"));
+    if (word) {
+      return {
+        label: quoted,
+        isElvish: true,
+        pronunciation: exercise.pronunciation ?? word.pronunciation,
+        meaning: word.translation,
+      };
+    }
+    return { label: quoted, isElvish: false };
+  }
+
+  const afterColon = exercise.prompt.match(/:\s*([^?]+)$/)?.[1];
+  if (afterColon && /[A-Za-zîûâêôáéíóú]/.test(afterColon)) {
+    const word = vocabularyBySurface.get(plain(afterColon).normalize("NFC").toLocaleLowerCase("de-DE"));
+    if (word) {
+      return {
+        label: plain(afterColon),
+        isElvish: true,
+        pronunciation: exercise.pronunciation ?? word.pronunciation,
+        meaning: word.translation,
+      };
+    }
+  }
+
+  return { label: exercise.prompt, isElvish: false };
+}
+
+const currentTitle = computed(() => current.value && exerciseTitle(current.value.exercise));
 
 function loadForm() {
   const review = current.value && reviewByExerciseId.value.get(current.value.exercise.id);
@@ -63,6 +112,7 @@ function loadForm() {
 
 watch([current, selectedUnit, selectedState], () => {
   if (currentIndex.value >= filteredExercises.value.length) currentIndex.value = 0;
+  titlePopoverOpen.value = false;
   loadForm();
 }, { immediate: true });
 
@@ -186,8 +236,20 @@ onMounted(loadDataset);
 
         <article class="mt-6 rounded-3xl bg-[#f7f2e8] p-5 text-[#26322f] sm:p-7">
           <p class="mb-2 text-xs font-black uppercase tracking-[.16em] text-[#557564]">{{ current.exercise.kind }} · Vorschau</p>
-          <h3 class="font-display text-2xl font-bold">{{ current.exercise.prompt }}</h3>
-          <p v-if="current.exercise.pronunciation" class="mt-2 text-sm font-bold text-[#426f59]">Aussprache: {{ current.exercise.pronunciation }}</p>
+          <div class="relative">
+            <button
+              v-if="currentTitle?.isElvish"
+              type="button"
+              class="review-gloss-trigger font-display text-2xl font-bold"
+              :aria-expanded="titlePopoverOpen"
+              @click="titlePopoverOpen = !titlePopoverOpen"
+            >{{ currentTitle.label }}</button>
+            <h3 v-else class="font-display text-2xl font-bold">{{ currentTitle?.label }}</h3>
+            <p v-if="currentTitle?.isElvish && currentTitle.pronunciation" class="mt-2 text-sm font-bold text-[#426f59]">Aussprache: {{ currentTitle.pronunciation }}</p>
+            <div v-if="titlePopoverOpen && currentTitle?.isElvish" class="review-gloss-popover" role="status">
+              <span class="font-bold">{{ currentTitle.label }}</span> · {{ currentTitle.meaning }}
+            </div>
+          </div>
 
           <div v-if="current.exercise.kind === 'choice' || current.exercise.kind === 'cloze'" class="mt-6 grid gap-3">
             <button v-for="choice in current.exercise.choices" :key="choice" type="button" class="review-option">{{ choice }}</button>
@@ -207,7 +269,6 @@ onMounted(loadDataset);
             <summary class="cursor-pointer font-bold text-[#315c4a]">Redaktionsdetails</summary>
             <dl class="mt-3 grid gap-2">
               <div><dt class="font-bold">Musterlösung</dt><dd>{{ current.exercise.answer }}</dd></div>
-              <div v-if="current.exercise.hint"><dt class="font-bold">Hinweis</dt><dd>{{ current.exercise.hint }}</dd></div>
               <div><dt class="font-bold">Quelle</dt><dd>{{ current.exercise.source }}</dd></div>
             </dl>
           </details>
