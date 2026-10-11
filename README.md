@@ -18,6 +18,12 @@ npm test
 npm run build
 ```
 
+## Übungen redaktionell prüfen
+
+Die lokale Redaktionsansicht unter `http://localhost:5173/review.html` bewertet
+Übungen als Vorschaukarte und speichert Entscheidungen versioniert im Repo.
+Details stehen in [docs/EXERCISE_REVIEW.md](docs/EXERCISE_REVIEW.md).
+
 ## Sprachdaten importieren
 
 Der Eldamo-Import wird nur bei der Entwicklung ausgeführt; die fertige App lädt keine Sprachdaten aus dem Netz.

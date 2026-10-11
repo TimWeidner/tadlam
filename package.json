@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && node scripts/generate-pwa-icons.mjs && vite build && node scripts/generate-sw.mjs",
-    "test": "vitest run && node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs scripts/pwa-config.test.mjs",
+    "test": "vitest run && node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs scripts/pwa-config.test.mjs scripts/review-feedback.test.mjs",
     "test:watch": "vitest",
     "test:language": "node --test scripts/language/eldamo-transform.test.mjs scripts/language/unit-plan.test.mjs",
     "language:import": "node scripts/language/import-eldamo.mjs",
-    "language:report": "node scripts/language/report-curriculum.mjs"
+    "language:report": "node scripts/language/report-curriculum.mjs",
+    "review:report": "node scripts/review-feedback-report.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

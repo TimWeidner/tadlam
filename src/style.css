@@ -46,3 +46,14 @@ button { -webkit-tap-highlight-color: transparent; }
   100% { transform: perspective(600px) rotateY(0deg) scale(1); filter: brightness(1); }
 }
 @media (prefers-reduced-motion: reduce) { .tadlam-bridge-mask, .tadlam-fog-reveal, .tadlam-coin-flip { animation: none; stroke-dashoffset: 0; } }
+
+.review-select { @apply block w-full rounded-xl border border-[#5d8879] bg-[#0d2c25] px-3 py-2 font-medium text-[#f7f2e8] outline-none focus:ring-2 focus:ring-[#bcdf90]; }
+.review-option { @apply block w-full rounded-2xl border-2 border-[#d2ddd4] bg-white px-4 py-3 text-left font-semibold; }
+.review-tag { @apply rounded-full border border-[#719484] px-3 py-1.5 text-xs font-bold text-[#e5eee2] transition hover:border-[#bcdf90]; }
+.review-tag-active { @apply border-[#bcdf90] bg-[#315c4a] text-[#f7f2e8]; }
+.review-note { @apply block w-full resize-y rounded-2xl border border-[#719484] bg-[#0d2c25] px-4 py-3 font-normal text-[#f7f2e8] outline-none placeholder:text-[#9db4a6] focus:ring-2 focus:ring-[#bcdf90]; }
+.review-action { @apply rounded-xl px-4 py-3 text-sm font-black transition disabled:cursor-wait disabled:opacity-60; }
+.review-accept { @apply bg-[#70d63b] text-[#163a32] hover:bg-[#8bea53]; }
+.review-revise { @apply bg-[#f6dc8d] text-[#493a13] hover:bg-[#fae9ae]; }
+.review-reject { @apply bg-[#7a332f] text-[#fff4ed] hover:bg-[#96443e]; }
+.review-nav { @apply grid size-11 place-items-center rounded-xl border border-[#719484] text-lg font-bold hover:bg-[#315c4a]; }
