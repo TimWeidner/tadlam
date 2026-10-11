@@ -88,4 +88,4 @@ Unit 10 erweitert den Wortschatz um 12 klar als Neo markierte Zeitwörter und Ta
 - Units 6–8 nutzen ausschließlich im Eldamo-Import als `attested` geführte Lemmata.
 - Units 9–10 prüfen den individuellen Status pro Lemma; Neo-Formen bleiben im Lernpfad und in der Übungsredaktion sichtbar gekennzeichnet.
 - Jede Unit besteht aktuell aus fünf Knoten mit jeweils 15 Übungen: zwei bis drei Portionen neuer Wörter, eine Wiederholung der vorherigen Unit und eine Abschlussrunde.
-- Die Wiedervorlage kann zusätzlich individuelle Fehlersignale priorisieren; der feste Wiederholungsknoten ersetzt sie nicht.
+- Ab Unit 5 ist der Wiederholungsknoten adaptiv: Ein Fehler priorisiert zunächst andere Aufgaben mit derselben Vokabel oder Grammatik, dann die konkrete Fehleraufgabe. Ohne Fehlersignal bleibt die redaktionell kuratierte Auffrischung aus früheren Units erhalten.

@@ -28,6 +28,9 @@ export interface Exercise {
   choices?: string[];
   tokens?: string[];
   pairs?: Array<{ left: string; right: string }>;
+  /** Learning concepts that make this task a useful alternate review item. */
+  lexemeIds?: string[];
+  grammarIds?: string[];
   engine?: EngineExerciseContext;
 }
 
@@ -192,11 +195,16 @@ export function queueForReview(
       };
 }
 
-function practiceSignalKeys(exercise: Exercise): string[] {
-  if (!exercise.engine) return [`exercise:${exercise.id}`];
+function practiceSignalKeys(
+  exercise: Exercise,
+  fallbackLexemeIds: string[] = [],
+): string[] {
+  const lexemeIds = exercise.engine?.lexemeIds ?? exercise.lexemeIds ?? fallbackLexemeIds;
+  const grammarIds = exercise.engine?.ruleIds ?? exercise.grammarIds ?? [];
   return [
-    ...exercise.engine.lexemeIds.map((id) => `lexeme:${id}`),
-    ...exercise.engine.ruleIds.map((id) => `rule:${id}`),
+    `exercise:${exercise.id}`,
+    ...lexemeIds.map((id) => `lexeme:${id}`),
+    ...grammarIds.map((id) => `rule:${id}`),
   ];
 }
 
@@ -204,9 +212,10 @@ export function recordExerciseMiss(
   progress: Progress,
   exercise: Exercise,
   date = todayKey(),
+  fallbackLexemeIds: string[] = [],
 ): Progress {
   const practiceSignals = { ...progress.practiceSignals };
-  for (const key of practiceSignalKeys(exercise)) {
+  for (const key of practiceSignalKeys(exercise, fallbackLexemeIds)) {
     const previous = practiceSignals[key];
     practiceSignals[key] = {
       misses: (previous?.misses ?? 0) + 1,
@@ -219,9 +228,10 @@ export function recordExerciseMiss(
 export function recordExerciseSuccess(
   progress: Progress,
   exercise: Exercise,
+  fallbackLexemeIds: string[] = [],
 ): Progress {
   const practiceSignals = { ...progress.practiceSignals };
-  for (const key of practiceSignalKeys(exercise)) {
+  for (const key of practiceSignalKeys(exercise, fallbackLexemeIds)) {
     const previous = practiceSignals[key];
     if (!previous) continue;
     practiceSignals[key] = { ...previous, misses: Math.max(0, previous.misses - 1) };

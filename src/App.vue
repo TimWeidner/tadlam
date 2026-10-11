@@ -16,7 +16,10 @@ import {
   type Lesson,
   type Progress,
 } from "./domain";
-import { lessonExerciseSet } from "./language/lesson-exercises";
+import {
+  adaptiveReviewExerciseSet,
+  lessonExerciseSet,
+} from "./language/lesson-exercises";
 import {
   grammarCards,
   learnerVocabulary,
@@ -552,12 +555,16 @@ function begin(
   resetExercise();
 }
 function startLesson(lesson: Lesson) {
-  if (isLessonUnlocked(lesson, progress.value))
+  if (isLessonUnlocked(lesson, progress.value)) {
+    const adaptiveReview = lesson.phase === "review" && lesson.unit >= 5;
     begin(
-      lesson.title,
-      lessonExerciseSet(lesson, progress.value.practiceSignals),
+      adaptiveReview ? "Deine Wiederholung" : lesson.title,
+      adaptiveReview
+        ? adaptiveReviewExerciseSet(lesson, lessons, progress.value.practiceSignals)
+        : lessonExerciseSet(lesson, progress.value.practiceSignals),
       lesson,
     );
+  }
 }
 function startReview() {
   const items = progress.value.reviewExerciseIds
@@ -593,14 +600,23 @@ function removeToken(index: number) {
 function recordOutcome(correct: boolean) {
   if (!current.value) return;
   if (correct) {
-    progress.value = recordExerciseSuccess(progress.value, current.value);
+    progress.value = recordExerciseSuccess(
+      progress.value,
+      current.value,
+      activeLesson.value?.lexemeIds,
+    );
     if (reviewMode.value) resolvedReviews.value.add(current.value.id);
     else if (!requeued.value.has(current.value.id)) correctFirst.value += 1;
   } else if (!requeued.value.has(current.value.id)) {
     requeued.value.add(current.value.id);
     queue.value.push(current.value);
     progress.value = queueForReview(progress.value, current.value.id);
-    progress.value = recordExerciseMiss(progress.value, current.value);
+    progress.value = recordExerciseMiss(
+      progress.value,
+      current.value,
+      undefined,
+      activeLesson.value?.lexemeIds,
+    );
   }
 }
 function checkAnswer() {

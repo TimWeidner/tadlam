@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { lessons } from "../domain";
+import { defaultProgress, recordExerciseMiss } from "../domain";
 import {
+  adaptiveReviewExerciseSet,
   LESSON_EXERCISE_TARGET,
   lessonExerciseSet,
 } from "./lesson-exercises";
@@ -87,5 +89,39 @@ describe("lesson exercise set", () => {
     expect(() => lessonExerciseSet({ ...lessons[0], exercises: [] })).toThrow(
       "erwartet werden 15",
     );
+  });
+
+  it("turns a miss into related vocabulary and grammar practice from Unit 5 onward", () => {
+    const weakLesson = lessons.find((lesson) => lesson.id === "u4-gates")!;
+    const weakExercise = weakLesson.exercises[0];
+    const progress = recordExerciseMiss(
+      defaultProgress(),
+      weakExercise,
+      "2026-10-11",
+      weakLesson.lexemeIds,
+    );
+    const reviewLesson = lessons.find((lesson) => lesson.id === "u5-review")!;
+    const exercises = adaptiveReviewExerciseSet(
+      reviewLesson,
+      lessons,
+      progress.practiceSignals,
+    );
+
+    expect(exercises).toHaveLength(LESSON_EXERCISE_TARGET);
+    expect(exercises.map((exercise) => exercise.id)).toContain(weakExercise.id);
+    expect(
+      exercises.filter(
+        (exercise) =>
+          exercise.id !== weakExercise.id &&
+          exercise.lexemeIds?.includes(weakExercise.lexemeIds![0]),
+      ),
+    ).not.toHaveLength(0);
+    expect(
+      exercises.some(
+        (exercise) =>
+          exercise.id !== weakExercise.id &&
+          exercise.grammarIds?.includes("singular-plural"),
+      ),
+    ).toBe(true);
   });
 });

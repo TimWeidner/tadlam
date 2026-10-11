@@ -9,6 +9,7 @@ export interface StudyLexeme {
   /** A Neo bridge is visibly labelled even where individual source words exist. */
   status?: Exercise["status"];
   source?: string;
+  grammarIds?: string[];
 }
 export interface FormPair {
   id: string;
@@ -16,6 +17,7 @@ export interface FormPair {
   singular: string;
   plural: string;
   gloss: string;
+  grammarIds?: string[];
 }
 
 const source = "Eldamo · kuratierter Kursinhalt";
@@ -27,15 +29,19 @@ const statusFor = (...words: StudyLexeme[]) =>
 const sourceFor = (...words: StudyLexeme[]) =>
   words.find((word) => word.source)?.source ??
   (statusFor(...words) === "neo" ? neoSource : source);
+const conceptsFor = (...words: StudyLexeme[]) => ({
+  lexemeIds: [...new Set(words.map((word) => word.id))],
+  grammarIds: [...new Set(words.flatMap((word) => word.grammarIds ?? []))],
+});
 
 const choice = (id: string, prompt: string, choices: string[], answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
-  ({ id, kind: "choice", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words) });
+  ({ id, kind: "choice", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words), ...conceptsFor(...words) });
 const cloze = (id: string, prompt: string, choices: string[], answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
-  ({ id, kind: "cloze", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words) });
+  ({ id, kind: "cloze", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words), ...conceptsFor(...words) });
 const type = (id: string, prompt: string, answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
-  ({ id, kind: "type", prompt, answer, status: statusFor(...words), source: sourceFor(...words) });
+  ({ id, kind: "type", prompt, answer, status: statusFor(...words), source: sourceFor(...words), ...conceptsFor(...words) });
 const match = (id: string, prompt: string, pairs: Array<{ left: string; right: string }>, _hint: string, words: StudyLexeme[] = []): Exercise =>
-  ({ id, kind: "match", prompt, pairs, answer: "match", status: statusFor(...words), source: sourceFor(...words) });
+  ({ id, kind: "match", prompt, pairs, answer: "match", status: statusFor(...words), source: sourceFor(...words), ...conceptsFor(...words) });
 
 const rotated = <T,>(values: T[], index: number, count = 3) =>
   Array.from({ length: Math.min(count, values.length) }, (_, offset) =>
@@ -110,34 +116,38 @@ export function pairExercises(
   reviewPairs: FormPair[] = [],
 ): Exercise[] {
   const exercises: Exercise[] = [];
+  const pairConcepts = (...selected: FormPair[]) => ({
+    lexemeIds: [...new Set(selected.map((pair) => pair.lexemeId))],
+    grammarIds: [...new Set(selected.flatMap((pair) => pair.grammarIds ?? ["singular-plural"]))],
+  });
   const pluralChoices = (pair: FormPair, index: number) =>
     [pair.plural, ...rotated(pairs.filter((candidate) => candidate.id !== pair.id).map((candidate) => candidate.plural), index, 2)];
 
   for (const [index, pair] of pairs.slice(0, 6).entries()) {
-    exercises.push(choice(`${prefix}-plural-${index}`, `Welche Mehrzahl gehört zu „${pair.singular}“ (${pair.gloss})?`, pluralChoices(pair, index), pair.plural, "Dieses Paar wird einzeln gelernt, nicht aus einer Lautregel erraten."));
+    exercises.push({ ...choice(`${prefix}-plural-${index}`, `Welche Mehrzahl gehört zu „${pair.singular}“ (${pair.gloss})?`, pluralChoices(pair, index), pair.plural, "Dieses Paar wird einzeln gelernt, nicht aus einer Lautregel erraten."), ...pairConcepts(pair) });
   }
   for (let index = 0; index < pairs.length; index += 3) {
     const group = pairs.slice(index, index + 3);
-    if (group.length >= 2) exercises.push(match(`${prefix}-match-${index}`, `Ordne Einzahl und Mehrzahl, Runde ${Math.floor(index / 3) + 1}, zu.`, group.map((pair) => ({ left: pair.singular, right: pair.plural })), "Alle Formen sind einzeln belegte Paare."));
+    if (group.length >= 2) exercises.push({ ...match(`${prefix}-match-${index}`, `Ordne Einzahl und Mehrzahl, Runde ${Math.floor(index / 3) + 1}, zu.`, group.map((pair) => ({ left: pair.singular, right: pair.plural })), "Alle Formen sind einzeln belegte Paare."), ...pairConcepts(...group) });
   }
   for (const [index, pair] of pairs.entries()) {
-    exercises.push(cloze(`${prefix}-cloze-${index}`, `Mehrere ${pair.gloss}: ___.`, pluralChoices(pair, index + 1), pair.plural, `${scene}: nur diese freigegebene Form.`));
+    exercises.push({ ...cloze(`${prefix}-cloze-${index}`, `Mehrere ${pair.gloss}: ___.`, pluralChoices(pair, index + 1), pair.plural, `${scene}: nur diese freigegebene Form.`), ...pairConcepts(pair) });
   }
   for (const [index, pair] of pairs.entries()) {
-    exercises.push(type(`${prefix}-type-${index}`, `Tippe die Mehrzahl zu „${pair.singular}“.`, pair.plural, "Die Form ist ein kuratiertes Paar."));
+    exercises.push({ ...type(`${prefix}-type-${index}`, `Tippe die Mehrzahl zu „${pair.singular}“.`, pair.plural, "Die Form ist ein kuratiertes Paar."), ...pairConcepts(pair) });
   }
   for (let index = 0; exercises.length < target; index += 1) {
     const pair = pairs[index % pairs.length];
-    exercises.push(choice(`${prefix}-reverse-${index}`, `„${pair.plural}“ bezeichnet mehrere …`, [pair.gloss, ...rotated(pairs.filter((candidate) => candidate.id !== pair.id).map((candidate) => candidate.gloss), index, 2)], pair.gloss, "Lies die Form auch in der Rückrichtung."));
+    exercises.push({ ...choice(`${prefix}-reverse-${index}`, `„${pair.plural}“ bezeichnet mehrere …`, [pair.gloss, ...rotated(pairs.filter((candidate) => candidate.id !== pair.id).map((candidate) => candidate.gloss), index, 2)], pair.gloss, "Lies die Form auch in der Rückrichtung."), ...pairConcepts(pair) });
   }
   const reviews = reviewPairs.slice(0, 3).map((pair, index) =>
-    cloze(
+    ({ ...cloze(
       `${prefix}-review-${index}`,
       `Wiederholung: Mehrere ${pair.gloss}: ___.`,
       pluralChoices(pair, index + 2),
       pair.plural,
       "Ein bereits bekanntes, einzeln belegtes Formenpaar.",
-    ),
+    ), ...pairConcepts(pair) }),
   );
   return [...exercises.slice(0, target - reviews.length), ...reviews];
 }

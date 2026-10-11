@@ -125,7 +125,7 @@ export const unitsTwoToFiveLessons: Lesson[] = [
   pairLesson("u4-ramp", "Einzelne und mehrere", unitFourPairs, [unitFourPairs[0], unitFourPairs[1], unitFourPairs[8]]),
   lesson("u5-place", 5, "Richtung erkennen", "Neue Wörter · Präpositionen", "✦", "new", unitFivePlace, "auf der Karte"),
   lesson("u5-way", 5, "Über Wege und Brücken", "Neue Wörter · Orientierung", "◎", "new", unitFiveWay, "unterwegs"),
-  lesson("u5-review", 5, "Torformen wiederholen", "Wiederholung · Unit 4", "↻", "review", unitFourReview, "vor dem Tor"),
+  lesson("u5-review", 5, "Deine Wiederholung", "Fehlerfokus · frühere Units", "↻", "review", unitFourReview, "vor dem Tor"),
   lesson("u5-action", 5, "Auf ein Wort hören", "Feste Form · Objekt", "❋", "grammar", unitFiveAction, "an der Wache"),
   lesson("u5-ramp", 5, "Den Weg finden", "Anwenden · Abschlussrunde", "◆", "ramp", [...unitFivePlace, ...unitFiveWay, ...unitFiveAction], "auf dem Weg", [unitOneReview[0], unitThreeGround[0], unitThreeNature[1]]),
 ];
