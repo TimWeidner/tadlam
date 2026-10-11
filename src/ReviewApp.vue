@@ -75,10 +75,21 @@ function plain(value: string) {
   return value.replace(/[.!?,;:]/g, "").trim();
 }
 
+function normalized(value: string) {
+  return plain(value).normalize("NFC").toLocaleLowerCase("de-DE");
+}
+
+function germanTargetFromPrompt(prompt: string) {
+  const match = prompt.match(
+    /(?:Sindarin-)?Wort für\s+(?:ein(?:en|e)?\s+|den\s+|die\s+|das\s+)?(.+?)(?:\s+ist\s+___|[?.])/i,
+  );
+  return match?.[1] ? plain(match[1]) : null;
+}
+
 function exerciseTitle(exercise: Exercise): ExerciseTitle {
   const quoted = exercise.prompt.match(/„([^“]+)“/)?.[1];
   if (quoted) {
-    const word = vocabularyBySurface.get(plain(quoted).normalize("NFC").toLocaleLowerCase("de-DE"));
+    const word = vocabularyBySurface.get(normalized(quoted));
     if (word) {
       return {
         label: quoted,
@@ -89,8 +100,8 @@ function exerciseTitle(exercise: Exercise): ExerciseTitle {
         popoverTerm: word.surface,
       };
     }
-    const answerWord = vocabularyBySurface.get(plain(exercise.answer).normalize("NFC").toLocaleLowerCase("de-DE"));
-    const germanWord = vocabularyByTranslation.get(plain(quoted).normalize("NFC").toLocaleLowerCase("de-DE")) ?? answerWord;
+    const answerWord = vocabularyBySurface.get(normalized(exercise.answer));
+    const germanWord = vocabularyByTranslation.get(normalized(quoted)) ?? answerWord;
     if (germanWord) {
       return {
         label: quoted,
@@ -101,12 +112,31 @@ function exerciseTitle(exercise: Exercise): ExerciseTitle {
         popoverTerm: germanWord.surface,
       };
     }
+    if (/^(Was bedeutet|Was drückt|Welche Bedeutung|Welche Grundbedeutung)/.test(exercise.prompt)) {
+      return {
+        label: quoted,
+        isGlossable: true,
+        isElvish: true,
+        pronunciation: exercise.pronunciation,
+        meaning: exercise.answer,
+        popoverTerm: quoted,
+      };
+    }
+    if (exercise.kind === "type" || /Sindarin-Wort|auf Sindarin/.test(exercise.prompt)) {
+      return {
+        label: quoted,
+        isGlossable: Boolean(exercise.answer && exercise.answer !== "match"),
+        isElvish: false,
+        meaning: quoted,
+        popoverTerm: exercise.answer,
+      };
+    }
     return { label: quoted, isGlossable: false, isElvish: false };
   }
 
   const afterColon = exercise.prompt.match(/:\s*([^?]+)$/)?.[1];
   if (afterColon && /[A-Za-zîûâêôáéíóú]/.test(afterColon)) {
-    const word = vocabularyBySurface.get(plain(afterColon).normalize("NFC").toLocaleLowerCase("de-DE"));
+    const word = vocabularyBySurface.get(normalized(afterColon));
     if (word) {
       return {
         label: plain(afterColon),
@@ -117,6 +147,19 @@ function exerciseTitle(exercise: Exercise): ExerciseTitle {
         popoverTerm: word.surface,
       };
     }
+  }
+
+  const germanTarget = germanTargetFromPrompt(exercise.prompt);
+  if (germanTarget && exercise.answer !== "match") {
+    const word = vocabularyBySurface.get(normalized(exercise.answer));
+    return {
+      label: germanTarget,
+      isGlossable: true,
+      isElvish: false,
+      pronunciation: word?.pronunciation,
+      meaning: germanTarget,
+      popoverTerm: word?.surface ?? exercise.answer,
+    };
   }
 
   return { label: exercise.prompt, isGlossable: false, isElvish: false };

@@ -18,14 +18,14 @@ export interface FormPair {
 const source = "Eldamo · kuratierter Kursinhalt";
 const target = 15;
 
-const choice = (id: string, prompt: string, choices: string[], answer: string, hint: string): Exercise =>
-  ({ id, kind: "choice", prompt, choices, answer, hint, status: "attested", source });
-const cloze = (id: string, prompt: string, choices: string[], answer: string, hint: string): Exercise =>
-  ({ id, kind: "cloze", prompt, choices, answer, hint, status: "attested", source });
-const type = (id: string, prompt: string, answer: string, hint: string): Exercise =>
-  ({ id, kind: "type", prompt, answer, hint, status: "attested", source });
-const match = (id: string, prompt: string, pairs: Array<{ left: string; right: string }>, hint: string): Exercise =>
-  ({ id, kind: "match", prompt, pairs, answer: "match", hint, status: "attested", source });
+const choice = (id: string, prompt: string, choices: string[], answer: string, _hint: string): Exercise =>
+  ({ id, kind: "choice", prompt, choices, answer, status: "attested", source });
+const cloze = (id: string, prompt: string, choices: string[], answer: string, _hint: string): Exercise =>
+  ({ id, kind: "cloze", prompt, choices, answer, status: "attested", source });
+const type = (id: string, prompt: string, answer: string, _hint: string): Exercise =>
+  ({ id, kind: "type", prompt, answer, status: "attested", source });
+const match = (id: string, prompt: string, pairs: Array<{ left: string; right: string }>, _hint: string): Exercise =>
+  ({ id, kind: "match", prompt, pairs, answer: "match", status: "attested", source });
 
 const rotated = <T,>(values: T[], index: number, count = 3) =>
   Array.from({ length: Math.min(count, values.length) }, (_, offset) =>

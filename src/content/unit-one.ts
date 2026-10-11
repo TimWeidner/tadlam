@@ -9,48 +9,48 @@ const choice = (
   prompt: string,
   choices: string[],
   answer: string,
-  hint: string,
+  _hint: string,
   status: Exercise["status"] = "attested",
   exerciseSource = source,
-): Exercise => ({ id, kind: "choice", prompt, choices, answer, hint, status, source: exerciseSource });
+): Exercise => ({ id, kind: "choice", prompt, choices, answer, status, source: exerciseSource });
 
 const type = (
   id: string,
   prompt: string,
   answer: string,
-  hint: string,
+  _hint: string,
   status: Exercise["status"] = "attested",
   exerciseSource = source,
-): Exercise => ({ id, kind: "type", prompt, answer, hint, status, source: exerciseSource });
+): Exercise => ({ id, kind: "type", prompt, answer, status, source: exerciseSource });
 
 const cloze = (
   id: string,
   prompt: string,
   choices: string[],
   answer: string,
-  hint: string,
+  _hint: string,
   status: Exercise["status"] = "attested",
   exerciseSource = source,
-): Exercise => ({ id, kind: "cloze", prompt, choices, answer, hint, status, source: exerciseSource });
+): Exercise => ({ id, kind: "cloze", prompt, choices, answer, status, source: exerciseSource });
 
 const order = (
   id: string,
   prompt: string,
   tokens: string[],
   answer: string,
-  hint: string,
+  _hint: string,
   status: Exercise["status"] = "attested",
   exerciseSource = source,
-): Exercise => ({ id, kind: "order", prompt, tokens, answer, hint, status, source: exerciseSource });
+): Exercise => ({ id, kind: "order", prompt, tokens, answer, status, source: exerciseSource });
 
 const match = (
   id: string,
   prompt: string,
   pairs: Array<{ left: string; right: string }>,
-  hint: string,
+  _hint: string,
   status: Exercise["status"] = "attested",
   exerciseSource = source,
-): Exercise => ({ id, kind: "match", prompt, pairs, answer: "match", hint, status, source: exerciseSource });
+): Exercise => ({ id, kind: "match", prompt, pairs, answer: "match", status, source: exerciseSource });
 
 /** Four curated 15-question lessons. No session is padded with cloned tasks. */
 export const unitOneLessons: Lesson[] = [

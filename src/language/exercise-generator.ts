@@ -61,7 +61,6 @@ function buildExercise(
     kind,
     status: "attested" as const,
     source: sourceLabel(sentence),
-    hint: "Die Antwort wird aus einem kuratierten Satzframe samt Regelspur geprüft.",
     engine: asContext(sentence),
   };
 

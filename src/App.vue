@@ -24,7 +24,6 @@ import {
   sourceUrl,
 } from "./language/learner-content";
 import { randomizedMatchPairs, shuffled } from "./language/exercise-presentation";
-import { generateSentence } from "./language/syntax";
 
 type Screen = "learn" | "words" | "grammar" | "profile" | "library";
 type CompletionPhase = "flip" | "path" | "next";
@@ -52,7 +51,6 @@ const exerciseIndex = ref(0);
 const answer = ref("");
 const ordered = ref<string[]>([]);
 const checked = ref(false);
-const showWhy = ref(false);
 const result = ref(false);
 const reviewMode = ref(false);
 const correctFirst = ref(0);
@@ -127,9 +125,6 @@ const currentCorrect = computed(() =>
   current.value?.kind === "match"
     ? matched.value.length === (current.value.pairs?.length ?? 0)
     : isAnswerCorrect(current.value!, answer.value),
-);
-const currentEngineSentence = computed(() =>
-  current.value?.engine ? generateSentence(current.value.engine.frame) : null,
 );
 const availableGrammarCards = computed(() =>
   grammarCards.filter((card) =>
@@ -569,7 +564,6 @@ function resetExercise() {
   answer.value = "";
   ordered.value = [];
   checked.value = false;
-  showWhy.value = false;
   matchLeft.value = "";
   matchRight.value = "";
   matched.value = [];
@@ -1076,45 +1070,6 @@ function playLibraryAnimation(
                 </button>
               </div>
             </div>
-          </div>
-          <button
-            class="mt-6 text-sm font-bold text-moss underline underline-offset-4 dark:text-[#b4d6b7]"
-            @click="showWhy = !showWhy"
-          >
-            {{ showWhy ? "Erklärung schließen" : "Warum?" }}
-          </button>
-          <div
-            v-if="showWhy"
-            class="mt-3 rounded-2xl bg-[#f1f7ef] p-4 text-sm text-[#42534a] dark:bg-[#224438] dark:text-[#d5e6d7]"
-          >
-            <strong
-              >{{ statusLabel(current.status) }} · {{ current.source }}</strong
-            >
-            <p class="mt-1">{{ current.hint }}</p>
-            <template v-if="currentEngineSentence">
-              <div class="mt-4 border-t border-[#c9dbc9] pt-3 dark:border-[#4c6f5d]">
-                <p class="text-xs font-bold uppercase tracking-[.14em] text-moss dark:text-[#b4d6b7]">
-                  Regelspur
-                </p>
-                <ul class="mt-2 space-y-2">
-                  <li
-                    v-for="step in currentEngineSentence.derivation"
-                    :key="`${step.ruleId}-${step.to}`"
-                  >
-                    <strong>{{ step.from }} → {{ step.to }}</strong>
-                    <span class="block text-xs leading-5">{{ step.explanation }}</span>
-                    <a
-                      v-if="sourceUrl(step.sourceRefId)"
-                      :href="sourceUrl(step.sourceRefId) ?? undefined"
-                      target="_blank"
-                      rel="noreferrer"
-                      class="mt-1 inline-block text-xs font-bold text-moss underline underline-offset-2 dark:text-[#b4d6b7]"
-                      >{{ sourceLabel(step.sourceRefId) }}</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </template>
           </div>
         </article>
         <div

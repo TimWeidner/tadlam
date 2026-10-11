@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   awardProgress,
+  allExercises,
   defaultProgress,
   isAnswerCorrect,
   isLessonUnlocked,
@@ -17,6 +18,10 @@ describe("answer evaluation", () => {
     expect(isAnswerCorrect(lessons[0].exercises[5], "  MELLON.  ")).toBe(true));
   it("rejects a different answer", () =>
     expect(isAnswerCorrect(lessons[0].exercises[5], "Anor")).toBe(false));
+});
+describe("published course content", () => {
+  it("does not ship answer-revealing exercise hints", () =>
+    expect(allExercises.every((exercise) => exercise.hint === undefined)).toBe(true));
 });
 describe("progress", () => {
   it("awards XP and starts a streak on a new day", () =>
