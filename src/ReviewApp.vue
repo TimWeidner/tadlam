@@ -212,7 +212,7 @@ onMounted(loadDataset);
 </script>
 
 <template>
-  <main class="review-shell grain min-h-screen bg-[#0d2c25] px-4 py-6 text-[#f7f2e8] sm:px-6">
+  <main class="review-shell grain min-h-screen bg-[#0d2c25] px-4 py-6 text-[#f7f2e8] sm:px-6" @click="titlePopoverOpen = false">
     <div class="mx-auto max-w-3xl">
       <header class="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
@@ -263,7 +263,7 @@ onMounted(loadDataset);
               type="button"
               class="review-gloss-trigger font-display text-2xl font-bold"
               :aria-expanded="titlePopoverOpen"
-              @click="titlePopoverOpen = !titlePopoverOpen"
+              @click.stop="titlePopoverOpen = !titlePopoverOpen"
             >{{ currentTitle.label }}</button>
             <h3 v-else class="font-display text-2xl font-bold">{{ currentTitle?.label }}</h3>
             <p v-if="currentTitle?.isElvish && currentTitle.pronunciation" class="mt-2 text-sm font-bold text-[#426f59]">Aussprache: {{ currentTitle.pronunciation }}</p>
