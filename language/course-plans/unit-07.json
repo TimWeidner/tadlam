@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "unit": 7,
+  "theme": "Was geschieht?",
+  "communicationGoals": [
+    "häufige Handlungen als Grundformen erkennen",
+    "kuratierten Verbstämmen in LARP-Szenen begegnen",
+    "keine freie Konjugation aus einem Verb ableiten"
+  ],
+  "grammarComponents": ["selected-attested-verb-forms", "irregular-verbs"],
+  "referenceGrammarComponents": ["verb-classes"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:3736354243", "lemma": "car-", "gloss": "to do, make", "mode": "productive" },
+    { "lexemeId": "eldamo:1410009759", "lemma": "heb-", "gloss": "to keep", "mode": "recognition" },
+    { "lexemeId": "eldamo:322881567", "lemma": "feria-", "gloss": "to make ready (promptly)", "mode": "recognition" },
+    { "lexemeId": "eldamo:1939403845", "lemma": "dar-", "gloss": "*to stop, halt", "mode": "recognition" },
+    { "lexemeId": "eldamo:235290361", "lemma": "elia-", "gloss": "to cause to prosper, bless (a work), help one", "mode": "productive" },
+    { "lexemeId": "eldamo:801110253", "lemma": "natha-", "gloss": "to bring help to, save, rescue", "mode": "recognition" },
+    { "lexemeId": "eldamo:1275067921", "lemma": "govan-", "gloss": "to meet, come to same place", "mode": "productive" },
+    { "lexemeId": "eldamo:3618727045", "lemma": "cova-", "gloss": "to come together, meet", "mode": "recognition" },
+    { "lexemeId": "eldamo:3251788527", "lemma": "ephed-", "gloss": "to say out", "mode": "recognition" },
+    { "lexemeId": "eldamo:2376237379", "lemma": "can-", "gloss": "to cry out, shout, call", "mode": "productive" },
+    { "lexemeId": "eldamo:2230295347", "lemma": "tiria-", "gloss": "to watch, gaze", "mode": "recognition" },
+    { "lexemeId": "eldamo:37799167", "lemma": "penna-", "gloss": "to come down (in a slant), fall", "mode": "recognition" }
+  ],
+  "fixedForms": []
+}

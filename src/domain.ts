@@ -3,6 +3,7 @@ import { validateExerciseAnswer } from "./language/validation";
 import type { SyntaxFrame } from "./language/syntax";
 import { unitOneLessons } from "./content/unit-one";
 import { unitsTwoToFiveLessons } from "./content/units-two-five";
+import { unitsSixToTenLessons } from "./content/units-six-ten";
 
 export type LanguageStatus = "attested" | "neo";
 export type ExerciseKind = "choice" | "cloze" | "order" | "type" | "match";
@@ -578,7 +579,11 @@ const legacyLessons: Lesson[] = [
 // Kept temporarily for migration documentation. The active Unit 1 uses the
 // curated four-lesson pool, not the earlier six-node prototype above.
 void legacyLessons;
-export const lessons: Lesson[] = [...unitOneLessons, ...unitsTwoToFiveLessons];
+export const lessons: Lesson[] = [
+  ...unitOneLessons,
+  ...unitsTwoToFiveLessons,
+  ...unitsSixToTenLessons,
+];
 export const allExercises = lessons.flatMap((lesson) => lessonExerciseSet(lesson));
 export const findExercise = (id: string) =>
   allExercises.find((exercise) => exercise.id === id);

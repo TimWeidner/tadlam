@@ -6,6 +6,9 @@ export interface StudyLexeme {
   surface: string;
   gloss: string;
   mode: StudyMode;
+  /** A Neo bridge is visibly labelled even where individual source words exist. */
+  status?: Exercise["status"];
+  source?: string;
 }
 export interface FormPair {
   id: string;
@@ -16,16 +19,23 @@ export interface FormPair {
 }
 
 const source = "Eldamo · kuratierter Kursinhalt";
+const neoSource = "Neo-Sindarin · kuratierte Brücke";
 const target = 15;
 
-const choice = (id: string, prompt: string, choices: string[], answer: string, _hint: string): Exercise =>
-  ({ id, kind: "choice", prompt, choices, answer, status: "attested", source });
-const cloze = (id: string, prompt: string, choices: string[], answer: string, _hint: string): Exercise =>
-  ({ id, kind: "cloze", prompt, choices, answer, status: "attested", source });
-const type = (id: string, prompt: string, answer: string, _hint: string): Exercise =>
-  ({ id, kind: "type", prompt, answer, status: "attested", source });
-const match = (id: string, prompt: string, pairs: Array<{ left: string; right: string }>, _hint: string): Exercise =>
-  ({ id, kind: "match", prompt, pairs, answer: "match", status: "attested", source });
+const statusFor = (...words: StudyLexeme[]) =>
+  words.some((word) => word.status === "neo") ? "neo" : "attested";
+const sourceFor = (...words: StudyLexeme[]) =>
+  words.find((word) => word.source)?.source ??
+  (statusFor(...words) === "neo" ? neoSource : source);
+
+const choice = (id: string, prompt: string, choices: string[], answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
+  ({ id, kind: "choice", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words) });
+const cloze = (id: string, prompt: string, choices: string[], answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
+  ({ id, kind: "cloze", prompt, choices, answer, status: statusFor(...words), source: sourceFor(...words) });
+const type = (id: string, prompt: string, answer: string, _hint: string, words: StudyLexeme[] = []): Exercise =>
+  ({ id, kind: "type", prompt, answer, status: statusFor(...words), source: sourceFor(...words) });
+const match = (id: string, prompt: string, pairs: Array<{ left: string; right: string }>, _hint: string, words: StudyLexeme[] = []): Exercise =>
+  ({ id, kind: "match", prompt, pairs, answer: "match", status: statusFor(...words), source: sourceFor(...words) });
 
 const rotated = <T,>(values: T[], index: number, count = 3) =>
   Array.from({ length: Math.min(count, values.length) }, (_, offset) =>
@@ -47,24 +57,25 @@ export function vocabularyExercises(
     [word.surface, ...rotated(words.filter((candidate) => candidate.id !== word.id).map((candidate) => candidate.surface), index, 2)];
 
   for (const [index, word] of words.slice(0, 6).entries()) {
-    exercises.push(choice(`${prefix}-meaning-${index}`, `Was bedeutet „${word.surface}“?`, choicesForGloss(word, index), word.gloss, `${scene}: erst Bedeutung erkennen.`));
+    exercises.push(choice(`${prefix}-meaning-${index}`, `Was bedeutet „${word.surface}“?`, choicesForGloss(word, index), word.gloss, `${scene}: erst Bedeutung erkennen.`, [word]));
   }
   for (let index = 0; index < words.length; index += 3) {
     const group = words.slice(index, index + 3);
-    if (group.length >= 2) exercises.push(match(`${prefix}-match-${index}`, `Ordne Wortkarten, Runde ${Math.floor(index / 3) + 1}, zu.`, group.map((word) => ({ left: word.surface, right: word.gloss })), "Richtige Paare bleiben sichtbar."));
+    if (group.length >= 2) exercises.push(match(`${prefix}-match-${index}`, `Ordne Wortkarten, Runde ${Math.floor(index / 3) + 1}, zu.`, group.map((word) => ({ left: word.surface, right: word.gloss })), "Richtige Paare bleiben sichtbar.", group));
   }
   for (const [index, word] of words.entries()) {
-    exercises.push(cloze(`${prefix}-cloze-${index}`, `Das Sindarin-Wort für „${word.gloss}“ ist ___.`, choicesForSurface(word, index), word.surface, "Nutze nur die bereits eingeführten Karten."));
+    exercises.push(cloze(`${prefix}-cloze-${index}`, `Das Sindarin-Wort für „${word.gloss}“ ist ___.`, choicesForSurface(word, index), word.surface, "Nutze nur die bereits eingeführten Karten.", [word]));
   }
   for (const [index, word] of productive.entries()) {
-    exercises.push(type(`${prefix}-type-${index}`, `Tippe das Wort für „${word.gloss}“.`, word.surface, "Jetzt ohne Auswahlhilfe."));
+    exercises.push(type(`${prefix}-type-${index}`, `Tippe das Wort für „${word.gloss}“.`, word.surface, "Jetzt ohne Auswahlhilfe.", [word]));
   }
   for (let index = 0; exercises.length < target; index += 1) {
     const word = words[index % words.length];
+    const round = Math.floor(index / words.length) + 1;
     if (index % 2 === 0) {
-      exercises.push(choice(`${prefix}-recall-${index}`, `Welche Wortkarte passt in die Szene „${scene}“ für „${word.gloss}“?`, choicesForSurface(word, index + 1), word.surface, "Der Szenenrahmen hilft, aber die Wortkarte ist das Lernziel."));
+      exercises.push(choice(`${prefix}-recall-${index}`, `Welche Wortkarte passt in die Szene „${scene}“ für „${word.gloss}“? Runde ${round}.`, choicesForSurface(word, index + 1), word.surface, "Der Szenenrahmen hilft, aber die Wortkarte ist das Lernziel.", [word]));
     } else {
-      exercises.push(choice(`${prefix}-reverse-${index}`, `Welche Bedeutung gehört zu „${word.surface}“?`, choicesForGloss(word, index + 1), word.gloss, "Prüfe die Bedeutung noch einmal aus der anderen Richtung."));
+      exercises.push(choice(`${prefix}-reverse-${index}`, `Welche Bedeutung gehört zu „${word.surface}“? Runde ${round}.`, choicesForGloss(word, index + 1), word.gloss, "Prüfe die Bedeutung noch einmal aus der anderen Richtung.", [word]));
     }
   }
   const reviews = reviewWords.slice(0, 3).map((word, index) => {
@@ -75,6 +86,7 @@ export function vocabularyExercises(
         choicesForSurface(word, index + 2),
         word.surface,
         "Ein bekanntes Wort aus einer früheren Unit.",
+        [word],
       );
     }
     return choice(
@@ -83,6 +95,7 @@ export function vocabularyExercises(
       choicesForGloss(word, index + 2),
       word.gloss,
       "Ein bekanntes Wort aus einer früheren Unit.",
+      [word],
     );
   });
 

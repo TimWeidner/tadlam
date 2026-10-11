@@ -7,7 +7,7 @@ const readJson = async (relativePath) =>
     await readFile(new URL(relativePath, import.meta.url), "utf8"),
   );
 
-const [lexicon, roadmap, unitOne, unitTwo, unitThree, unitFour, unitFive] = await Promise.all([
+const [lexicon, roadmap, unitOne, unitTwo, unitThree, unitFour, unitFive, unitSix, unitSeven, unitEight, unitNine, unitTen] = await Promise.all([
   readJson("../../src/language/generated/eldamo-lexicon.json"),
   readJson("../../language/grammar-roadmap.json"),
   readJson("../../language/course-plans/unit-01.json"),
@@ -15,9 +15,14 @@ const [lexicon, roadmap, unitOne, unitTwo, unitThree, unitFour, unitFive] = awai
   readJson("../../language/course-plans/unit-03.json"),
   readJson("../../language/course-plans/unit-04.json"),
   readJson("../../language/course-plans/unit-05.json"),
+  readJson("../../language/course-plans/unit-06.json"),
+  readJson("../../language/course-plans/unit-07.json"),
+  readJson("../../language/course-plans/unit-08.json"),
+  readJson("../../language/course-plans/unit-09.json"),
+  readJson("../../language/course-plans/unit-10.json"),
 ]);
 
-const units = [unitOne, unitTwo, unitThree, unitFour, unitFive];
+const units = [unitOne, unitTwo, unitThree, unitFour, unitFive, unitSix, unitSeven, unitEight, unitNine, unitTen];
 
 const lexemesById = new Map(lexicon.lexemes.map((lexeme) => [lexeme.id, lexeme]));
 const components = new Set(roadmap.components.map((component) => component.id));
@@ -29,13 +34,13 @@ describe("course plans", () => {
     }
   });
 
-  it("uses attested lemmas with matching stable IDs and glosses", () => {
+  it("uses source-labelled lemmas with matching stable IDs and glosses", () => {
     for (const unit of units) {
       for (const planned of unit.newLexemes) {
         const lexeme = lexemesById.get(planned.lexemeId);
         assert.ok(lexeme, `${planned.lexemeId} is absent from the Eldamo package`);
         assert.equal(lexeme.lemma, planned.lemma);
-        assert.equal(lexeme.confidence, "attested");
+        assert.equal(lexeme.confidence, planned.status ?? "attested");
       }
     }
   });

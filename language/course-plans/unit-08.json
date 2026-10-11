@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "unit": 8,
+  "theme": "Sätze verbinden",
+  "communicationGoals": [
+    "kleine Verbindungswörter und Zeitwörter erkennen",
+    "belegte Satzbausteine von frei erzeugten Sätzen unterscheiden",
+    "Wortbildung als Lesewerkzeug kennenlernen"
+  ],
+  "grammarComponents": ["conjunctions", "attested-sentence-patterns"],
+  "referenceGrammarComponents": ["word-formation"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:2814200763", "lemma": "a¹", "gloss": "and", "mode": "productive" },
+    { "lexemeId": "eldamo:2091206437", "lemma": "ach²", "gloss": "*but", "mode": "recognition" },
+    { "lexemeId": "eldamo:3586600781", "lemma": "ir", "gloss": "?when, while", "mode": "recognition" },
+    { "lexemeId": "eldamo:917698495", "lemma": "sui", "gloss": "*as", "mode": "recognition" },
+    { "lexemeId": "eldamo:1925514569", "lemma": "hí", "gloss": "now", "mode": "productive" },
+    { "lexemeId": "eldamo:1094080739", "lemma": "ui", "gloss": "ever", "mode": "recognition" },
+    { "lexemeId": "eldamo:3098131039", "lemma": "sí", "gloss": "here, in this place (of speaker)", "mode": "productive" },
+    { "lexemeId": "eldamo:3402128255", "lemma": "ned", "gloss": "first", "mode": "recognition" },
+    { "lexemeId": "eldamo:1739892921", "lemma": "ad-", "gloss": "back, again, re-", "mode": "recognition" },
+    { "lexemeId": "eldamo:2908123947", "lemma": "-dil", "gloss": "friend, lover", "mode": "recognition" },
+    { "lexemeId": "eldamo:193193059", "lemma": "-iel¹", "gloss": "daughter", "mode": "recognition" },
+    { "lexemeId": "eldamo:2447472675", "lemma": "-we", "gloss": "person, being, individual", "mode": "recognition" }
+  ],
+  "fixedForms": []
+}

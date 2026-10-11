@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "unit": 6,
+  "theme": "Wem gehört was?",
+  "communicationGoals": [
+    "Familie, Zuhause und Zugehörigkeit im Lager benennen",
+    "belegte Besitz- und Zugehörigkeitsmuster erkennen",
+    "Handwerk und Schutz in einer LARP-Szene verstehen"
+  ],
+  "grammarComponents": ["noun-modifiers"],
+  "referenceGrammarComponents": ["possessives", "genitive"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:1791197021", "lemma": "adar", "gloss": "father", "mode": "productive" },
+    { "lexemeId": "eldamo:921714735", "lemma": "emel", "gloss": "mother", "mode": "productive" },
+    { "lexemeId": "eldamo:3973339289", "lemma": "hanar", "gloss": "brother", "mode": "recognition" },
+    { "lexemeId": "eldamo:2587504773", "lemma": "nethel", "gloss": "sister", "mode": "recognition" },
+    { "lexemeId": "eldamo:2438171517", "lemma": "adaneth", "gloss": "(mortal) woman", "mode": "recognition" },
+    { "lexemeId": "eldamo:1220983633", "lemma": "nos(s)", "gloss": "family, kindred, clan, house", "mode": "recognition" },
+    { "lexemeId": "eldamo:1926942351", "lemma": "gwaith", "gloss": "people", "mode": "productive" },
+    { "lexemeId": "eldamo:1964807933", "lemma": "bâr", "gloss": "house, dwelling, home", "mode": "productive" },
+    { "lexemeId": "eldamo:3720376219", "lemma": "curu", "gloss": "skill (of the hand), craft, magic", "mode": "productive" },
+    { "lexemeId": "eldamo:620689743", "lemma": "tavn", "gloss": "thing made by handicraft", "mode": "recognition" },
+    { "lexemeId": "eldamo:1539713025", "lemma": "ost", "gloss": "fort, fortress, stronghold, citadel", "mode": "productive" },
+    { "lexemeId": "eldamo:658710813", "lemma": "aran", "gloss": "king, lord, chief, (lit.) high or noble person", "mode": "recognition" }
+  ],
+  "fixedForms": []
+}

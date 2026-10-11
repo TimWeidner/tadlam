@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "unit": 10,
+  "theme": "Neo-Brücke: Zeit und Person",
+  "communicationGoals": [
+    "Zeitwörter und Tageszeiten als Neo-Sindarin erkennen",
+    "die spätere Zeitformen-Unit fachlich vorbereiten",
+    "noch keine freien Zeitformen oder Personenendungen erzeugen"
+  ],
+  "grammarComponents": [],
+  "referenceGrammarComponents": ["present-tense", "past-tense", "subject-suffixes", "vowel-lengthening"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:1628059847", "lemma": "erlu", "gloss": "once, one time", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1340416251", "lemma": "órui", "gloss": "daily", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:212280491", "lemma": "abor¹", "gloss": "tomorrow, (lit.) after-day", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1895902345", "lemma": "orvedui", "gloss": "yesterday", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1930810753", "lemma": "amor", "gloss": "morning, early day", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:2034302123", "lemma": "nedhor", "gloss": "mid-day, noon", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1074570979", "lemma": "avnedhor", "gloss": "afternoon", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1155906013", "lemma": "oreth", "gloss": "hour", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1614275633", "lemma": "luig", "gloss": "minute, moment", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:3602656099", "lemma": "rong", "gloss": "soon", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:3188922503", "lemma": "allu", "gloss": "never", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:242022079", "lemma": "tell", "gloss": "last, final (in a series)", "mode": "recognition", "status": "neo" }
+  ],
+  "fixedForms": []
+}

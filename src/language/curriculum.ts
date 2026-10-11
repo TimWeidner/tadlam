@@ -1,5 +1,6 @@
 import curriculumMapJson from "../../language/curriculum-map.json";
 import { unitsTwoToFiveLessons } from "../content/units-two-five";
+import { unitsSixToTenLessons } from "../content/units-six-ten";
 import type { Lesson } from "../domain";
 
 export type CurriculumRole = "introduced" | "practised" | "reviewed";
@@ -46,7 +47,7 @@ function courseMapEntries(): CurriculumEntry[] {
   );
   const usesByLexeme = new Map<string, CurriculumUse[]>();
 
-  for (const lesson of unitsTwoToFiveLessons) {
+  for (const lesson of [...unitsTwoToFiveLessons, ...unitsSixToTenLessons]) {
     for (const lexemeId of lesson.lexemeIds ?? []) {
       const uses = usesByLexeme.get(lexemeId) ?? [];
       uses.push({

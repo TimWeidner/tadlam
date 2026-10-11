@@ -36,6 +36,7 @@ const feedbackTags = [
 const allReviewExercises: ReviewExercise[] = lessons.flatMap((lesson) =>
   lesson.exercises.map((exercise) => ({ lesson, exercise })),
 );
+const availableUnits = [...new Set(lessons.map((lesson) => lesson.unit))];
 const dataset = ref<ExerciseReviewDataset>(emptyExerciseReviewDataset());
 const selectedUnit = ref("all");
 const selectedState = ref<"all" | "open" | ReviewDecision>("open");
@@ -273,7 +274,7 @@ onMounted(loadDataset);
         <label class="text-sm font-bold">Einheit
           <select v-model="selectedUnit" class="review-select mt-1">
             <option value="all">Alle Einheiten</option>
-            <option v-for="unit in [1, 2, 3, 4, 5]" :key="unit" :value="String(unit)">Einheit {{ unit }}</option>
+            <option v-for="unit in availableUnits" :key="unit" :value="String(unit)">Einheit {{ unit }}</option>
           </select>
         </label>
         <label class="text-sm font-bold">Status

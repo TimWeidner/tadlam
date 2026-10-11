@@ -20,14 +20,18 @@ describe("curriculum validation", () => {
     expect(unitOne.gaps).toHaveLength(0);
   });
 
-  it("keeps unrelated recognition vocabulary out of the first unit", () => {
+  it("keeps later recognition vocabulary out of the first unit", () => {
     const eliaId = "eldamo:235290361";
     expect(
       lessons
         .filter((lesson) => lesson.unit === 1)
         .some((lesson) => lesson.lexemeIds?.includes(eliaId)),
     ).toBe(false);
-    expect(curriculumMap.entries.some((entry) => entry.lexemeId === eliaId)).toBe(false);
+    expect(
+      curriculumMap.entries.find((entry) => entry.lexemeId === eliaId)?.uses.some(
+        (use) => use.unit === 7 && use.role === "introduced",
+      ),
+    ).toBe(true);
     expect(learnerVocabulary.some((word) => word.lexemeId === eliaId)).toBe(false);
   });
 

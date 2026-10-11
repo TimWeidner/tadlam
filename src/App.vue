@@ -183,6 +183,11 @@ const unitDetails: Record<number, { title: string; subtitle: string }> = {
   3: { title: "Im Wald", subtitle: "Orte, Artikel und feste Formen" },
   4: { title: "Vor dem Tor", subtitle: "Einzahl, Mehrzahl und Gruppen" },
   5: { title: "Richtung und Ort", subtitle: "Wege, Karten und feste Formen" },
+  6: { title: "Wem gehört was?", subtitle: "Familie, Zuhause und Handwerk" },
+  7: { title: "Was geschieht?", subtitle: "Handlungen und kuratierte Verben" },
+  8: { title: "Sätze verbinden", subtitle: "Kleine Verbindungen und Bausteine" },
+  9: { title: "Neo-Brücke: Anrede", subtitle: "Personen, Gruppen und Höflichkeit" },
+  10: { title: "Neo-Brücke: Zeit", subtitle: "Tageszeit und Zeitwörter" },
 };
 const activeUnitDetails = computed(
   () => unitDetails[activePathUnit.value] ?? unitDetails[1],

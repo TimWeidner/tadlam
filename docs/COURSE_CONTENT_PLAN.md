@@ -1,4 +1,4 @@
-# Kursinhalt: Units 1–2
+# Kursinhalt: Units 1–10
 
 Diese Dateien sind die erste quellgeprüfte Inhaltsplanung für den 12-Unit-Kurs. Sie enthalten **Grundformen**, keine automatisch abgeleiteten Oberflächenformen. `mode: productive` heißt: nach einer passenden Formen-/Syntaxfreigabe darf das Lemma in Aufgaben verwendet werden. `recognition` heißt: Bedeutung, Aussprache und Quellenhinweis dürfen eingeführt werden, ohne dass die Engine schon freie Flexion erzeugt.
 
@@ -62,3 +62,30 @@ Klassenplurale wie `Adanath`, `Edhelrim` oder `orchoth` bleiben reine Bedeutungs
 Unit 5 bringt 18 neue Grundformen: Präpositionen, Wege, Landschaft, Himmelsrichtungen und zwei Verbstämme. Präpositionen und indirekte Objekte bleiben zunächst in festen, einzeln kuratierten Chunks; es gibt keine freie Kombination wie `mi taur` oder `an mellon`.
 
 Die erste produktive Objektkonstruktion ist bewusst klein: die geprüfte, belegte Formel `Lasto beth.` mit `lasta- → lasto` und der hinterlegten Mutation `peth → beth`. `men-`, `anna-` und Richtungspräpositionen werden zunächst erkannt, aber nicht frei flektiert oder zusammengebaut.
+
+## Unit 6 · Wem gehört was?
+
+Unit 6 ergänzt 12 belegte Grundformen zu Familie, Zuhause, Schutz und Handwerk. Besitz, Genitiv und Zugehörigkeit werden dabei nur als **Lesemuster** erklärt. Produktiv bleiben nur die einzeln eingeführten Nomen; Tadlam erzeugt daraus keine Besitzketten oder Genitivformen.
+
+## Unit 7 · Was geschieht?
+
+Diese Unit führt 12 belegte Verbstämme für Vorbereitung, Hilfe, Begegnung und Kommunikation ein. Die Lernenden üben die Grundformen und einzelne kuratierte Aufgaben, nicht die Ableitung vollständiger Paradigmen. Verbklassen bleiben Referenzwissen, damit unregelmäßige Formen später pro Verb zuverlässig ergänzt werden können.
+
+## Unit 8 · Sätze verbinden
+
+12 belegte kleine Wörter und Wortbausteine bilden ein Lesewerkzeug für Verbindungen, Zeitbezug und Wortstruktur. Konstruktionen mit `a`, `ach`, `ir` oder `sui` werden nicht automatisch zu neuen Sätzen zusammengesetzt: Die Unit verwendet nur kuratierte Wortkarten und sichere Muster.
+
+## Unit 9 · Neo-Brücke: Mit anderen sprechen
+
+Die erste Neo-Unit enthält 12 Formen zu Anrede, Gruppe und Höflichkeit. Auch dort, wo ein einzelnes Wort bei Eldamo als belegt geführt wird, trägt die Übung bewusst das **Neo**-Label: Die kommunikative Kombination und der Lehrkontext sind eine redaktionelle Neo-Brücke. Es gibt keine produktive Pronomen- oder Kasusregel.
+
+## Unit 10 · Neo-Brücke: Zeit und Person
+
+Unit 10 erweitert den Wortschatz um 12 klar als Neo markierte Zeitwörter und Tageszeiten. Präsens, Vergangenheit, Personenendungen und Vokallängung werden nur vorbereitet und erklärt; die App bildet noch keine freien Zeitformen. Damit bleibt der Übergang nachvollziehbar, statt eine ungesicherte Grammatik als Tatsache auszugeben.
+
+## Veröffentlichung und Qualität
+
+- Units 6–8 nutzen ausschließlich im Eldamo-Import als `attested` geführte Lemmata.
+- Units 9–10 prüfen den individuellen Status pro Lemma; Neo-Formen bleiben im Lernpfad und in der Übungsredaktion sichtbar gekennzeichnet.
+- Jede Unit besteht aktuell aus fünf Knoten mit jeweils 15 Übungen: zwei bis drei Portionen neuer Wörter, eine Wiederholung der vorherigen Unit und eine Abschlussrunde.
+- Die Wiedervorlage kann zusätzlich individuelle Fehlersignale priorisieren; der feste Wiederholungsknoten ersetzt sie nicht.

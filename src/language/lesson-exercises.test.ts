@@ -12,12 +12,12 @@ describe("lesson exercise set", () => {
     );
   });
 
-  it("publishes five contiguous, playable course units", () => {
+  it("publishes ten contiguous, playable course units", () => {
     expect([...new Set(lessons.map((lesson) => lesson.unit))]).toEqual([
-      1, 2, 3, 4, 5,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ]);
     expect(lessons.filter((lesson) => lesson.unit === 1)).toHaveLength(4);
-    for (const unit of [2, 3, 4, 5]) {
+    for (const unit of [2, 3, 4, 5, 6, 7, 8, 9, 10]) {
       const unitLessons = lessons.filter((lesson) => lesson.unit === unit);
       expect(unitLessons).toHaveLength(5);
       expect(unitLessons[2].phase).toBe("review");
@@ -37,10 +37,10 @@ describe("lesson exercise set", () => {
     );
   });
 
-  it("keeps every Unit-1 round varied instead of mechanically recycling a prompt", () => {
+  it("keeps every course round varied instead of mechanically recycling a prompt", () => {
     for (const lesson of lessons) {
       const exercises = lessonExerciseSet(lesson);
-      expect(new Set(exercises.map((exercise) => exercise.prompt)).size).toBe(
+      expect(new Set(exercises.map((exercise) => exercise.prompt)).size, lesson.id).toBe(
         LESSON_EXERCISE_TARGET,
       );
       expect(new Set(exercises.map((exercise) => exercise.kind)).size).toBeGreaterThanOrEqual(3);

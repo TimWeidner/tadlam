@@ -1,0 +1,27 @@
+{
+  "formatVersion": "1",
+  "unit": 9,
+  "theme": "Neo-Brücke: Mit anderen sprechen",
+  "communicationGoals": [
+    "Anrede, Gruppe und Höflichkeit als Neo-Sindarin erkennen",
+    "den Status jeder Neo-Übung sichtbar sehen",
+    "keine allgemeine Pronomen- oder Kasusregel ableiten"
+  ],
+  "grammarComponents": [],
+  "referenceGrammarComponents": ["polite-address", "independent-pronouns", "object-dative-pronouns"],
+  "newLexemes": [
+    { "lexemeId": "eldamo:3035605195", "lemma": "im¹", "gloss": "I, I myself", "mode": "recognition", "status": "attested" },
+    { "lexemeId": "eldamo:1581961535", "lemma": "le", "gloss": "thee, you (polite)", "mode": "recognition", "status": "attested" },
+    { "lexemeId": "eldamo:2068694825", "lemma": "nin", "gloss": "me", "mode": "recognition", "status": "attested" },
+    { "lexemeId": "eldamo:2084114697", "lemma": "cin", "gloss": "you (sg. fam.)", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:2466285747", "lemma": "pen", "gloss": "us (inclusive)", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1491673253", "lemma": "pe", "gloss": "we (inclusive)", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:1540837111", "lemma": "gwîn", "gloss": "our (inclusive)", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:6498811", "lemma": "gu", "gloss": "(together) with", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:2772556329", "lemma": "anna-", "gloss": "to thank", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:112067013", "lemma": "nathla-", "gloss": "to welcome", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:819370179", "lemma": "listo", "gloss": "please!", "mode": "recognition", "status": "neo" },
+    { "lexemeId": "eldamo:3651362727", "lemma": "mabed-", "gloss": "to ask [a question]", "mode": "recognition", "status": "neo" }
+  ],
+  "fixedForms": []
+}
