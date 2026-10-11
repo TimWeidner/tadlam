@@ -81,6 +81,7 @@ const completionAnimation = ref<{
 const completionColorRevealed = ref(false);
 const nextBubbleColorRevealed = ref(false);
 const revealingUnit = ref<number | null>(null);
+const foggedUnit = ref<number | null>(null);
 const animationRuns = ref<Record<string, number>>({
   flip: 0,
   next: 0,
@@ -416,6 +417,15 @@ function isUnitUnlocked(unit: number) {
 function shouldRevealUnit(unit: number) {
   return revealingUnit.value === unit;
 }
+function shouldHideUnitInFog(unit: number) {
+  return !isUnitUnlocked(unit) || (foggedUnit.value === unit && !shouldRevealUnit(unit));
+}
+function lessonPopupPosition(index: number) {
+  const pathIndex = index % pathPositions.length;
+  if ([1, 2, 3].includes(pathIndex)) return "left-0 translate-x-0";
+  if ([5, 6, 7].includes(pathIndex)) return "right-0 translate-x-0";
+  return "left-1/2 -translate-x-1/2";
+}
 function isUnitComplete(unit: number) {
   if (previewCompletedUnit === unit) return true;
   const unitLessons = lessons.filter((lesson) => lesson.unit === unit);
@@ -681,8 +691,15 @@ function finish() {
     )
       progress.value.perfectLessonIds.push(activeLesson.value.id);
     progress.value = awardProgress(progress.value, correctFirst.value * 10);
-    if (isNewCompletion)
+    if (isNewCompletion) {
       pendingCompletionLessonId.value = activeLesson.value.id;
+      const completedIndex = pathLessons.findIndex(
+        (lesson) => lesson.id === activeLesson.value?.id,
+      );
+      const nextLesson = pathLessons[completedIndex + 1];
+      if (nextLesson && nextLesson.unit !== activeLesson.value.unit)
+        foggedUnit.value = nextLesson.unit;
+    }
   }
   result.value = true;
 }
@@ -714,8 +731,10 @@ function playCompletionAnimation(lessonId: string) {
       ) {
         revealingUnit.value = nextLesson.unit;
         window.setTimeout(() => {
-          if (revealingUnit.value === nextLesson.unit)
+          if (revealingUnit.value === nextLesson.unit) {
             revealingUnit.value = null;
+            foggedUnit.value = null;
+          }
         }, 1800);
       }
       window.setTimeout(() => {
@@ -1239,7 +1258,7 @@ function playLibraryAnimation(
                     class="mt-1 font-display text-2xl font-bold"
                     :class="{
                       'tadlam-fog-reveal': shouldRevealUnit(activePathUnit),
-                      'tadlam-fog-hidden': !isUnitUnlocked(activePathUnit),
+                      'tadlam-fog-hidden': shouldHideUnitInFog(activePathUnit),
                     }"
                   >
                     {{ activeUnitDetails.title }}
@@ -1249,7 +1268,7 @@ function playLibraryAnimation(
                     :class="{
                       'tadlam-fog-reveal tadlam-fog-reveal-delayed':
                         shouldRevealUnit(activePathUnit),
-                      'tadlam-fog-hidden': !isUnitUnlocked(activePathUnit),
+                      'tadlam-fog-hidden': shouldHideUnitInFog(activePathUnit),
                     }"
                   >
                     {{ activeUnitDetails.subtitle }}
@@ -1407,7 +1426,7 @@ function playLibraryAnimation(
                     class="mt-1 font-display text-2xl font-bold text-white"
                     :class="{
                       'tadlam-fog-reveal': shouldRevealUnit(lesson.unit),
-                      'tadlam-fog-hidden': !isUnitUnlocked(lesson.unit),
+                      'tadlam-fog-hidden': shouldHideUnitInFog(lesson.unit),
                     }"
                   >
                     {{ unitDetails[lesson.unit].title }}
@@ -1417,7 +1436,7 @@ function playLibraryAnimation(
                     :class="{
                       'tadlam-fog-reveal tadlam-fog-reveal-delayed':
                         shouldRevealUnit(lesson.unit),
-                      'tadlam-fog-hidden': !isUnitUnlocked(lesson.unit),
+                      'tadlam-fog-hidden': shouldHideUnitInFog(lesson.unit),
                     }"
                   >
                     {{ unitDetails[lesson.unit].subtitle }}
@@ -1493,7 +1512,8 @@ function playLibraryAnimation(
                 </button>
                 <div
                   v-if="selectedPathLessonId === lesson.id"
-                  class="absolute left-1/2 top-24 z-30 w-64 -translate-x-1/2 rounded-2xl border-2 border-[#9bc680] bg-[#183d2e] p-4 text-left shadow-float"
+                  class="absolute top-24 z-30 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border-2 border-[#9bc680] bg-[#183d2e] p-4 text-left shadow-float"
+                  :class="lessonPopupPosition(index)"
                 >
                   <span
                     class="absolute -top-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 border-l-2 border-t-2 border-[#9bc680] bg-[#183d2e]"
