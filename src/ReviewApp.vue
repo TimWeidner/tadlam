@@ -16,9 +16,11 @@ interface ReviewExercise {
 
 interface ExerciseTitle {
   label: string;
+  isGlossable: boolean;
   isElvish: boolean;
   pronunciation?: string;
   meaning?: string;
+  popoverTerm?: string;
 }
 
 const feedbackTags = [
@@ -64,6 +66,9 @@ const acceptedCount = computed(
 const vocabularyBySurface = new Map(
   learnerVocabulary.map((word) => [word.surface.normalize("NFC").toLocaleLowerCase("de-DE"), word]),
 );
+const vocabularyByTranslation = new Map(
+  learnerVocabulary.map((word) => [word.translation.normalize("NFC").toLocaleLowerCase("de-DE"), word]),
+);
 const titlePopoverOpen = ref(false);
 
 function plain(value: string) {
@@ -77,12 +82,26 @@ function exerciseTitle(exercise: Exercise): ExerciseTitle {
     if (word) {
       return {
         label: quoted,
+        isGlossable: true,
         isElvish: true,
         pronunciation: exercise.pronunciation ?? word.pronunciation,
         meaning: word.translation,
+        popoverTerm: word.surface,
       };
     }
-    return { label: quoted, isElvish: false };
+    const answerWord = vocabularyBySurface.get(plain(exercise.answer).normalize("NFC").toLocaleLowerCase("de-DE"));
+    const germanWord = vocabularyByTranslation.get(plain(quoted).normalize("NFC").toLocaleLowerCase("de-DE")) ?? answerWord;
+    if (germanWord) {
+      return {
+        label: quoted,
+        isGlossable: true,
+        isElvish: false,
+        pronunciation: germanWord.pronunciation,
+        meaning: germanWord.translation,
+        popoverTerm: germanWord.surface,
+      };
+    }
+    return { label: quoted, isGlossable: false, isElvish: false };
   }
 
   const afterColon = exercise.prompt.match(/:\s*([^?]+)$/)?.[1];
@@ -91,14 +110,16 @@ function exerciseTitle(exercise: Exercise): ExerciseTitle {
     if (word) {
       return {
         label: plain(afterColon),
+        isGlossable: true,
         isElvish: true,
         pronunciation: exercise.pronunciation ?? word.pronunciation,
         meaning: word.translation,
+        popoverTerm: word.surface,
       };
     }
   }
 
-  return { label: exercise.prompt, isElvish: false };
+  return { label: exercise.prompt, isGlossable: false, isElvish: false };
 }
 
 const currentTitle = computed(() => current.value && exerciseTitle(current.value.exercise));
@@ -238,7 +259,7 @@ onMounted(loadDataset);
           <p class="mb-2 text-xs font-black uppercase tracking-[.16em] text-[#557564]">{{ current.exercise.kind }} · Vorschau</p>
           <div class="relative">
             <button
-              v-if="currentTitle?.isElvish"
+              v-if="currentTitle?.isGlossable"
               type="button"
               class="review-gloss-trigger font-display text-2xl font-bold"
               :aria-expanded="titlePopoverOpen"
@@ -246,8 +267,9 @@ onMounted(loadDataset);
             >{{ currentTitle.label }}</button>
             <h3 v-else class="font-display text-2xl font-bold">{{ currentTitle?.label }}</h3>
             <p v-if="currentTitle?.isElvish && currentTitle.pronunciation" class="mt-2 text-sm font-bold text-[#426f59]">Aussprache: {{ currentTitle.pronunciation }}</p>
-            <div v-if="titlePopoverOpen && currentTitle?.isElvish" class="review-gloss-popover" role="status">
-              <span class="font-bold">{{ currentTitle.label }}</span> · {{ currentTitle.meaning }}
+            <div v-if="titlePopoverOpen && currentTitle?.isGlossable" class="review-gloss-popover" role="status">
+              <span class="font-bold">{{ currentTitle.popoverTerm }}</span> · {{ currentTitle.meaning }}
+              <span v-if="!currentTitle.isElvish && currentTitle.pronunciation" class="block mt-1 text-xs font-bold">Aussprache: {{ currentTitle.pronunciation }}</span>
             </div>
           </div>
 
