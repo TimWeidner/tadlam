@@ -52,9 +52,70 @@ function conceptKeys(candidate: ReviewCandidate): string[] {
 
 function weakness(candidate: ReviewCandidate, practiceSignals: PracticeSignals) {
   return conceptKeys(candidate).reduce(
-    (total, key) => total + (practiceSignals[key]?.misses ?? 0),
+    (total, key) => total + signalWeight(practiceSignals[key]),
     0,
   );
+}
+
+/** Current misses lead; a resolved miss remains a light long-term signal. */
+function signalWeight(signal: PracticeSignal | undefined) {
+  if (!signal?.lastMissedAt) return 0;
+  return signal.misses > 0 ? 10 + signal.misses : 1;
+}
+
+function rememberedKeys(practiceSignals: PracticeSignals) {
+  return Object.entries(practiceSignals)
+    .filter(([, signal]) => Boolean(signal.lastMissedAt))
+    .sort(([, left], [, right]) => signalWeight(right) - signalWeight(left))
+    .map(([key]) => key);
+}
+
+function selectRelatedReview(
+  candidates: ReviewCandidate[],
+  fallback: Exercise[],
+  practiceSignals: PracticeSignals,
+): Exercise[] {
+  const weakKeys = rememberedKeys(practiceSignals);
+  if (!weakKeys.length) return fallback;
+
+  const selected: Exercise[] = [];
+  const selectedIds = new Set<string>();
+  const add = (candidate: ReviewCandidate | undefined) => {
+    if (!candidate || selectedIds.has(candidate.exercise.id)) return;
+    selected.push(candidate.exercise);
+    selectedIds.add(candidate.exercise.id);
+  };
+  const ranked = [...candidates].sort(
+    (left, right) => weakness(right, practiceSignals) - weakness(left, practiceSignals),
+  );
+
+  // For every remembered concept, choose a neighbouring question before the
+  // exact error. This turns a past miss into transferable practice.
+  for (const key of weakKeys) {
+    if (selected.length >= 8) break;
+    const related = ranked.find(
+      (candidate) =>
+        candidate.exercise.id !== key.replace("exercise:", "") &&
+        conceptKeys(candidate).includes(key),
+    );
+    add(related);
+  }
+  for (const candidate of ranked) {
+    if (selected.length >= 8) break;
+    add(candidate);
+  }
+  for (const exercise of fallback) {
+    if (selected.length >= LESSON_EXERCISE_TARGET) break;
+    if (!selectedIds.has(exercise.id)) {
+      selected.push(exercise);
+      selectedIds.add(exercise.id);
+    }
+  }
+  for (const candidate of ranked) {
+    if (selected.length >= LESSON_EXERCISE_TARGET) break;
+    add(candidate);
+  }
+  return selected.slice(0, LESSON_EXERCISE_TARGET);
 }
 
 /**
@@ -75,45 +136,16 @@ export function adaptiveReviewExerciseSet(
     .flatMap((lesson) =>
       lessonExerciseSet(lesson, practiceSignals).map((exercise) => ({ exercise, lesson })),
     );
-  const weakKeys = new Set(
-    Object.entries(practiceSignals)
-      .filter(([, signal]) => signal.misses > 0)
-      .map(([key]) => key),
-  );
-  if (!weakKeys.size) return authored;
+  return selectRelatedReview(earlier, authored, practiceSignals);
+}
 
-  const selected: Exercise[] = [];
-  const selectedIds = new Set<string>();
-  const add = (candidate: ReviewCandidate | undefined) => {
-    if (!candidate || selectedIds.has(candidate.exercise.id)) return;
-    selected.push(candidate.exercise);
-    selectedIds.add(candidate.exercise.id);
-  };
-  const ranked = [...earlier].sort(
-    (left, right) => weakness(right, practiceSignals) - weakness(left, practiceSignals),
+/** Personal review uses the same concept links as the in-path review nodes. */
+export function personalReviewExerciseSet(
+  courseLessons: Lesson[],
+  practiceSignals: PracticeSignals = {},
+): Exercise[] {
+  const candidates = courseLessons.flatMap((lesson) =>
+    lessonExerciseSet(lesson, practiceSignals).map((exercise) => ({ exercise, lesson })),
   );
-
-  // For every weak concept, choose a neighbouring question before the exact
-  // error. This makes a vocabulary or rule weakness transferable, not rote.
-  for (const key of weakKeys) {
-    if (selected.length >= 8) break;
-    const related = ranked.find(
-      (candidate) =>
-        candidate.exercise.id !== key.replace("exercise:", "") &&
-        conceptKeys(candidate).includes(key),
-    );
-    add(related);
-  }
-  for (const candidate of ranked) {
-    if (selected.length >= 8) break;
-    add(candidate);
-  }
-  for (const exercise of authored) {
-    if (selected.length >= LESSON_EXERCISE_TARGET) break;
-    if (!selectedIds.has(exercise.id)) {
-      selected.push(exercise);
-      selectedIds.add(exercise.id);
-    }
-  }
-  return selected.slice(0, LESSON_EXERCISE_TARGET);
+  return selectRelatedReview(candidates, [], practiceSignals);
 }

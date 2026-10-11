@@ -3,7 +3,6 @@ import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 import {
   awardProgress,
   defaultProgress,
-  findExercise,
   isAnswerCorrect,
   isLessonUnlocked,
   lessons,
@@ -19,6 +18,7 @@ import {
 import {
   adaptiveReviewExerciseSet,
   lessonExerciseSet,
+  personalReviewExerciseSet,
 } from "./language/lesson-exercises";
 import {
   grammarCards,
@@ -151,6 +151,12 @@ const pathNodes = ref<Record<string, HTMLElement | null>>({});
 const unitHeaderNodes = ref<Record<number, HTMLElement | null>>({});
 const selectedPathLessonId = ref<string | null>(null);
 const showReviewCard = ref(false);
+const rememberedErrorCount = computed(
+  () =>
+    Object.entries(progress.value.practiceSignals).filter(
+      ([key, signal]) => key.startsWith("exercise:") && Boolean(signal.lastMissedAt),
+    ).length,
+);
 const previewCompletedUnit =
   Number(new URLSearchParams(window.location.search).get("previewUnit")) ||
   null;
@@ -577,10 +583,8 @@ function startLesson(lesson: Lesson) {
   }
 }
 function startReview() {
-  const items = progress.value.reviewExerciseIds
-    .map(findExercise)
-    .filter((item): item is Exercise => Boolean(item));
-  if (items.length) begin("Wiederholung", items, null, true);
+  const items = personalReviewExerciseSet(lessons, progress.value.practiceSignals);
+  if (items.length) begin("Deine Wiederholung", items, null, true);
 }
 function resetExercise() {
   answer.value = "";
@@ -1297,7 +1301,7 @@ function playLibraryAnimation(
             @click="showReviewCard = false"
           />
           <article
-            v-if="progress.reviewExerciseIds.length"
+            v-if="rememberedErrorCount"
             class="fixed bottom-5 right-4 z-40 flex flex-col items-end sm:bottom-8 sm:right-8"
           >
             <div
@@ -1348,8 +1352,8 @@ function playLibraryAnimation(
             >
               ↻
               <span
-                class="absolute -right-1 -top-1 grid h-6 min-w-6 place-items-center rounded-full bg-[#d75b43] px-1 text-[10px] font-bold text-white"
-                >{{ progress.reviewExerciseIds.length }}</span
+                class="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#d75b43] p-0 text-center text-[10px] font-bold leading-none text-white"
+                >{{ rememberedErrorCount }}</span
               >
             </button>
           </article>

@@ -1,10 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { lessons } from "../domain";
-import { defaultProgress, recordExerciseMiss } from "../domain";
+import {
+  defaultProgress,
+  recordExerciseMiss,
+  recordExerciseSuccess,
+} from "../domain";
 import {
   adaptiveReviewExerciseSet,
   LESSON_EXERCISE_TARGET,
   lessonExerciseSet,
+  personalReviewExerciseSet,
 } from "./lesson-exercises";
 
 describe("lesson exercise set", () => {
@@ -121,6 +126,33 @@ describe("lesson exercise set", () => {
         (exercise) =>
           exercise.id !== weakExercise.id &&
           exercise.grammarIds?.includes("singular-plural"),
+      ),
+    ).toBe(true);
+  });
+
+  it("keeps a corrected past error in personal review through related exercises", () => {
+    const weakLesson = lessons.find((lesson) => lesson.id === "u4-gates")!;
+    const weakExercise = weakLesson.exercises[0];
+    const missed = recordExerciseMiss(
+      defaultProgress(),
+      weakExercise,
+      "2026-10-11",
+      weakLesson.lexemeIds,
+    );
+    const corrected = recordExerciseSuccess(
+      missed,
+      weakExercise,
+      weakLesson.lexemeIds,
+    );
+    expect(corrected.practiceSignals[`exercise:${weakExercise.id}`]?.misses).toBe(0);
+
+    const exercises = personalReviewExerciseSet(lessons, corrected.practiceSignals);
+    expect(exercises).toHaveLength(LESSON_EXERCISE_TARGET);
+    expect(
+      exercises.some(
+        (exercise) =>
+          exercise.id !== weakExercise.id &&
+          exercise.lexemeIds?.includes(weakExercise.lexemeIds![0]),
       ),
     ).toBe(true);
   });
