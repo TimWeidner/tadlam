@@ -1,6 +1,6 @@
 {
   "formatVersion": "1",
-  "updatedAt": "2026-10-11T15:17:03.346Z",
+  "updatedAt": "2026-10-11T15:25:23.489Z",
   "reviews": [
     {
       "exerciseId": "u1a1",
@@ -102,6 +102,24 @@
       "tags": [],
       "note": "",
       "reviewedAt": "2026-10-11T15:17:03.344Z"
+    },
+    {
+      "exerciseId": "u1a12",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T15:25:15.692Z"
+    },
+    {
+      "exerciseId": "u1a13",
+      "lessonId": "arrival",
+      "unit": 1,
+      "decision": "accepted",
+      "tags": [],
+      "note": "",
+      "reviewedAt": "2026-10-11T15:25:23.488Z"
     }
   ]
 }
