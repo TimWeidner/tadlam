@@ -269,7 +269,6 @@ onMounted(loadDataset);
             <p v-if="currentTitle?.isElvish && currentTitle.pronunciation" class="mt-2 text-sm font-bold text-[#426f59]">Aussprache: {{ currentTitle.pronunciation }}</p>
             <div v-if="titlePopoverOpen && currentTitle?.isGlossable" class="review-gloss-popover" role="status">
               <span class="font-bold">{{ currentTitle.popoverTerm }}</span> · {{ currentTitle.meaning }}
-              <span v-if="!currentTitle.isElvish && currentTitle.pronunciation" class="block mt-1 text-xs font-bold">Aussprache: {{ currentTitle.pronunciation }}</span>
             </div>
           </div>
 
